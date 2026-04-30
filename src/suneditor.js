@@ -1,0 +1,125 @@
+/**
+ * @warning `suneditor.js`, `cdn-builder.js`, `format-index.cjs` must be modified together.
+ */
+
+import Editor from './core/editor';
+
+import plugins from './plugins';
+import * as moduleContract from './modules/contract';
+import * as moduleManager from './modules/manager';
+import * as moduleUI from './modules/ui';
+import helper from './helper';
+import * as interfaces from './interfaces';
+
+import langs from './langs';
+
+const modules = {
+	contract: moduleContract,
+	manager: moduleManager,
+	ui: moduleUI,
+};
+
+/**
+ * @module SunEditorExports
+ */
+export { plugins, modules, helper, langs, interfaces };
+
+/**
+ * SunEditor Factory Object
+ * @namespace SunEditor
+ */
+export default {
+	/**
+	 * Returns the create function with preset options.
+	 * If the options overlap, the options of the `create` function take precedence.
+	 * @example
+	 * // Preset common options, then create multiple editors
+	 * const preset = SUNEDITOR.init({
+	 *   plugins: [image, link],
+	 *   buttonList: [['bold', 'italic'], ['image', 'link']],
+	 * });
+	 * const editor1 = preset.create('#editor1', { height: '300px' });
+	 * const editor2 = preset.create('#editor2', { height: '500px' });
+	 * @param {SunEditor.InitOptions} init_options - Initialization options
+	 * @returns {{create: (targets: Element|Object<string, {target: Element, options: SunEditor.InitFrameOptions}>, options: SunEditor.InitOptions) => SunEditor.Instance}}}
+	 */
+	init(init_options) {
+		return {
+			create: (targets, options) => this.create(targets, options, init_options),
+		};
+	},
+
+	/**
+	 * Creates a new instance of the SunEditor
+	 * @example
+	 * // Create with a DOM element
+	 * const editor = SUNEDITOR.create(document.getElementById('editor'), {
+	 *   buttonList: [['bold', 'italic', 'underline']],
+	 * });
+	 *
+	 * // Create with a CSS selector
+	 * const editor = SUNEDITOR.create('#editor', { height: '400px' });
+	 *
+	 * // Create multi-root editor
+	 * const editor = SUNEDITOR.create({
+	 *   header: { target: document.getElementById('header') },
+	 *   body: { target: document.getElementById('body'), options: { height: '500px' } },
+	 * });
+	 * @param {Element|string|Object<string, {target: Element, options: SunEditor.InitFrameOptions}>} target
+	 * - `Element`: The direct DOM element to initialize the editor on.
+	 * - `string`: A CSS selector string. The corresponding element is selected using `document.querySelector`.
+	 * - `Object`: For multi-root setup. Each key maps to a config with `{target, options}`.
+	 * @param {SunEditor.InitOptions} options - Initialization options
+	 * @param {SunEditor.InitOptions} [_init_options] - Optional preset initialization options
+	 * @returns {SunEditor.Instance} - Instance of the SunEditor
+	 * @throws {Error} If the target element is not provided or is invalid
+	 */
+	create(target, options, _init_options) {
+		if (typeof options !== 'object') options = /** @type {SunEditor.InitOptions} */ ({});
+		if (_init_options) {
+			options = /** @type {SunEditor.InitOptions} */ (
+				(() => {
+					return [_init_options, options].reduce((init, option) => {
+						Object.entries(option).forEach(([key, value]) => {
+							if (key === 'plugins' && value && init[key]) {
+								const i = Array.isArray(init[key]) ? init[key] : Object.values(init[key]);
+								const o = Array.isArray(value) ? value : Object.values(value);
+								init[key] = [...o.filter((val) => !i.includes(val)), ...i];
+							} else {
+								init[key] = value;
+							}
+						});
+						return init;
+					}, {});
+				})()
+			);
+		}
+
+		if (!target) throw Error('[SUNEDITOR.create.fail] The first parameter "target" is missing.');
+
+		const multiTargets = [];
+		if (typeof target === 'string') {
+			let t = null;
+			if (options?.shadowRoot) {
+				t = options.shadowRoot.querySelector(target);
+			}
+			if (!t) {
+				t = document.querySelector(target);
+			}
+			if (!t) throw Error(`[SUNEDITOR.create.fail]-[document.querySelector(${target})] Cannot find target element. Make sure "${target}" is a valid selector and exists in the document.`);
+			multiTargets.push({ key: null, target: t });
+		} else if (target.nodeType === 1) {
+			multiTargets.push({ key: null, target: target });
+		} else {
+			let props;
+			for (const key in target) {
+				props = target[key];
+				if (!props.target || props.target.nodeType !== 1) throw Error('[SUNEDITOR.create.fail] suneditor multi root requires textarea\'s element at the "target" property.');
+				props.key = key;
+				multiTargets.push(props);
+			}
+		}
+
+		return new Editor(multiTargets, options);
+	},
+};

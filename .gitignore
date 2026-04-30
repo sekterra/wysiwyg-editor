@@ -1,0 +1,35 @@
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+
+# project files
+.vscode/
+.idea/
+.out/
+.gen/
+.env/
+
+# modules
+node_modules/
+*.log
+
+#dev
+.git/
+/.vs
+.claude/*
+!.claude/skills/
+.work.md
+
+#jest
+coverage/
+temp_coverage/
+
+#only release branch, npm
+dist/**
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# npx repomix
+repomix-output.xml

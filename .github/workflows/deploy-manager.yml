@@ -1,0 +1,65 @@
+name: Deploy Management Action
+
+on:
+    push:
+        branches:
+            - release
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        # OIDC 인증
+        permissions:
+            contents: write
+            id-token: write
+            issues: write
+
+        steps:
+            # 1) 소스 체크아웃
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # 태그 비교를 위해 전체 기록을 가져옵니다.
+
+            # 2) Node.js 세팅
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+                  registry-url: 'https://registry.npmjs.org/'
+
+            # 3) package.json 버전 확인
+            - name: Check if version has been updated
+              id: check-version
+              run: |
+                  PACKAGE_VERSION=$(node -p "require('./package.json').version")
+                  LAST_GIT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+
+                  echo "현재 package.json 버전: v$PACKAGE_VERSION"
+                  echo "가장 최근 태그: $LAST_GIT_TAG"
+
+                  if [ "v$PACKAGE_VERSION" = "$LAST_GIT_TAG" ]; then
+                    echo "Version has not been updated. Skipping deploy."
+                    exit 1
+                  else
+                    echo "package_version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+                  fi
+
+            # 4) 패키지 설치
+            - name: Install dependencies
+              run: npm ci
+
+            # 5) 빌드
+            - name: Build
+              run: npm run build:prod
+
+            # 6) npm publish (OIDC 방식)
+            - name: Deploy
+              run: npm publish --provenance
+
+            # 7) 스크립트 실행
+            - name: Execute script for milestone
+              run: node .github/scripts/manage-deploy.js
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  VERSION_NAME: ${{ steps.check-version.outputs.package_version }}
