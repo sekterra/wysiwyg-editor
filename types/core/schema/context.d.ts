@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 /**
  * @typedef {Object} ContextStore
  *
@@ -49,55 +50,55 @@ export function CreateContext(toolbar: Element, toolbarContainer: Element | null
  * === Main UI Containers ===
  */
 export type ContextStore = {
-    /**
-     * - The **top menu tray** that holds buttons, dropdowns, or custom menus.
-     */
-    menuTray: HTMLElement;
-    /**
-     * - The **main toolbar** element containing editor actions.
-     */
-    toolbar_main: HTMLElement;
-    /**
-     * - The **container for main toolbar buttons**.
-     */
-    toolbar_buttonTray: HTMLElement;
-    /**
-     * - The **arrow indicator** in the toolbar (used for dropdown/tool menu navigation).
-     */
-    toolbar_arrow: HTMLElement;
-    /**
-     * - The **wrapper for the main toolbar and editor frame** (groups UI together).
-     *
-     * === Sub-Toolbar (Contextual/Balloon) ===
-     */
-    toolbar_wrapper?: HTMLElement;
-    /**
-     * - The **sub-toolbar** element (used for contextual or balloon toolbars).
-     */
-    toolbar_sub_main?: HTMLElement;
-    /**
-     * - The **container for sub-toolbar buttons**.
-     */
-    toolbar_sub_buttonTray?: HTMLElement;
-    /**
-     * - The **arrow indicator** in the sub-toolbar.
-     */
-    toolbar_sub_arrow?: HTMLElement;
-    /**
-     * - The **wrapper for the sub-toolbar**, containing its structure.
-     *
-     * === Status Bar ===
-     */
-    toolbar_sub_wrapper?: HTMLElement;
-    /**
-     * - The **wrapper for the status bar** (footer area for resize handles, info, etc.).
-     *
-     * === Sticky Mode Helpers ===
-     */
-    statusbar_wrapper?: HTMLElement;
-    /**
-     * - A **dummy placeholder** used when the toolbar is in sticky mode (to prevent layout shift).
-     * ================================================================================================================================
-     */
-    _stickyDummy?: HTMLElement;
+	/**
+	 * - The **top menu tray** that holds buttons, dropdowns, or custom menus.
+	 */
+	menuTray: HTMLElement;
+	/**
+	 * - The **main toolbar** element containing editor actions.
+	 */
+	toolbar_main: HTMLElement;
+	/**
+	 * - The **container for main toolbar buttons**.
+	 */
+	toolbar_buttonTray: HTMLElement;
+	/**
+	 * - The **arrow indicator** in the toolbar (used for dropdown/tool menu navigation).
+	 */
+	toolbar_arrow: HTMLElement;
+	/**
+	 * - The **wrapper for the main toolbar and editor frame** (groups UI together).
+	 *
+	 * === Sub-Toolbar (Contextual/Balloon) ===
+	 */
+	toolbar_wrapper?: HTMLElement;
+	/**
+	 * - The **sub-toolbar** element (used for contextual or balloon toolbars).
+	 */
+	toolbar_sub_main?: HTMLElement;
+	/**
+	 * - The **container for sub-toolbar buttons**.
+	 */
+	toolbar_sub_buttonTray?: HTMLElement;
+	/**
+	 * - The **arrow indicator** in the sub-toolbar.
+	 */
+	toolbar_sub_arrow?: HTMLElement;
+	/**
+	 * - The **wrapper for the sub-toolbar**, containing its structure.
+	 *
+	 * === Status Bar ===
+	 */
+	toolbar_sub_wrapper?: HTMLElement;
+	/**
+	 * - The **wrapper for the status bar** (footer area for resize handles, info, etc.).
+	 *
+	 * === Sticky Mode Helpers ===
+	 */
+	statusbar_wrapper?: HTMLElement;
+	/**
+	 * - A **dummy placeholder** used when the toolbar is in sticky mode (to prevent layout shift).
+	 * ================================================================================================================================
+	 */
+	_stickyDummy?: HTMLElement;
 };

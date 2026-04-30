@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 /**
  * @description A method that checks If the text is blank or to see if it contains `ZERO WIDTH SPACE` or empty (`unicode.zeroWidthSpace`)
  * @param {string|Node} text String value or Node
@@ -12,7 +13,7 @@ export function isZeroWidth(text: string | Node): boolean;
  * - `"front"`: Front edge, `"end"`: End edge, `undefined`: Both edge.
  * @returns {boolean}
  */
-export function isEdgePoint(container: Node, offset: number, dir?: ("front" | "end") | null): boolean;
+export function isEdgePoint(container: Node, offset: number, dir?: ('front' | 'end') | null): boolean;
 /**
  * @description Check the node is a text node.
  * @param {?*} node The node to check
@@ -167,31 +168,31 @@ export function isUneditable(node: Node): boolean;
 export function isImportantDisabled(node: Node): boolean;
 export default check;
 declare namespace check {
-    export { isZeroWidth };
-    export { isEdgePoint };
-    export { isText };
-    export { isElement };
-    export { isInputElement };
-    export { isButtonElement };
-    export { isList };
-    export { isListCell };
-    export { isTable };
-    export { isTableElements };
-    export { isTableCell };
-    export { isTableRow };
-    export { isBreak };
-    export { isAnchor };
-    export { isMedia };
-    export { isIFrame };
-    export { isFigure };
-    export { isContentLess };
-    export { isEmptyLine };
-    export { isComponentContainer };
-    export { isWysiwygFrame };
-    export { isNonEditable };
-    export { isSpanWithoutAttr };
-    export { isSameAttributes };
-    export { isExcludeFormat };
-    export { isUneditable };
-    export { isImportantDisabled };
+	export { isZeroWidth };
+	export { isEdgePoint };
+	export { isText };
+	export { isElement };
+	export { isInputElement };
+	export { isButtonElement };
+	export { isList };
+	export { isListCell };
+	export { isTable };
+	export { isTableElements };
+	export { isTableCell };
+	export { isTableRow };
+	export { isBreak };
+	export { isAnchor };
+	export { isMedia };
+	export { isIFrame };
+	export { isFigure };
+	export { isContentLess };
+	export { isEmptyLine };
+	export { isComponentContainer };
+	export { isWysiwygFrame };
+	export { isNonEditable };
+	export { isSpanWithoutAttr };
+	export { isSameAttributes };
+	export { isExcludeFormat };
+	export { isUneditable };
+	export { isImportantDisabled };
 }

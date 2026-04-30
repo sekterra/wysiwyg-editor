@@ -1,141 +1,154 @@
+import type {} from '../../typedef';
 export default Autocomplete;
 export type AutocompleteTriggerConfig = {
-    /**
-     * - Static data array. Each item must have a `key` field. Mutually exclusive with `apiUrl`.
-     * ```js
-     * // data
-     * [{ key: 'john', name: 'John Doe', url: '/users/john' }]
-     * ```
-     */
-    data?: Array<{
-        key: string;
-        [x: string]: any;
-    }>;
-    /**
-     * - API endpoint URL. Supports `{key}` and `{limitSize}` placeholders. Mutually exclusive with `data`.
-     */
-    apiUrl?: string;
-    /**
-     * - HTTP headers for the API request.
-     */
-    apiHeaders?: {
-        [x: string]: string;
-    };
-    /**
-     * - Transforms parsed JSON response into an array of data items.
-     */
-    transformResponse?: (arg0: any, arg1: XMLHttpRequest) => Array<{
-        key: string;
-    }>;
-    /**
-     * - Override global `limitSize` for this trigger.
-     */
-    limitSize?: number;
-    /**
-     * - Override global `searchStartLength` for this trigger.
-     */
-    searchStartLength?: number;
-    /**
-     * - Override global `useCachingData` for this trigger.
-     */
-    useCachingData?: boolean;
-    /**
-     * - Override global `useCachingFieldData` for this trigger.
-     */
-    useCachingFieldData?: boolean;
-    /**
-     * - Custom dropdown item renderer. Receives `(item, triggerText)`, returns HTML string.
-     */
-    renderItem?: (arg0: {
-        key: string;
-        [x: string]: any;
-    }, arg1: string) => string;
-    /**
-     * - Custom selection handler. Returns:
-     * - `string`: inserted as text node
-     * - `Element`: inserted as-is
-     * - `{tag, attrs, text}`: creates element via `dom.utils.createElement`
-     */
-    onSelect?: (arg0: {
-        key: string;
-        [x: string]: any;
-    }, arg1: string) => (string | Element | {
-        tag: string;
-        attrs?: any;
-        text?: string;
-    });
+	/**
+	 * - Static data array. Each item must have a `key` field. Mutually exclusive with `apiUrl`.
+	 * ```js
+	 * // data
+	 * [{ key: 'john', name: 'John Doe', url: '/users/john' }]
+	 * ```
+	 */
+	data?: Array<{
+		key: string;
+		[x: string]: any;
+	}>;
+	/**
+	 * - API endpoint URL. Supports `{key}` and `{limitSize}` placeholders. Mutually exclusive with `data`.
+	 */
+	apiUrl?: string;
+	/**
+	 * - HTTP headers for the API request.
+	 */
+	apiHeaders?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Transforms parsed JSON response into an array of data items.
+	 */
+	transformResponse?: (
+		arg0: any,
+		arg1: XMLHttpRequest,
+	) => Array<{
+		key: string;
+	}>;
+	/**
+	 * - Override global `limitSize` for this trigger.
+	 */
+	limitSize?: number;
+	/**
+	 * - Override global `searchStartLength` for this trigger.
+	 */
+	searchStartLength?: number;
+	/**
+	 * - Override global `useCachingData` for this trigger.
+	 */
+	useCachingData?: boolean;
+	/**
+	 * - Override global `useCachingFieldData` for this trigger.
+	 */
+	useCachingFieldData?: boolean;
+	/**
+	 * - Custom dropdown item renderer. Receives `(item, triggerText)`, returns HTML string.
+	 */
+	renderItem?: (
+		arg0: {
+			key: string;
+			[x: string]: any;
+		},
+		arg1: string,
+	) => string;
+	/**
+	 * - Custom selection handler. Returns:
+	 * - `string`: inserted as text node
+	 * - `Element`: inserted as-is
+	 * - `{tag, attrs, text}`: creates element via `dom.utils.createElement`
+	 */
+	onSelect?: (
+		arg0: {
+			key: string;
+			[x: string]: any;
+		},
+		arg1: string,
+	) =>
+		| string
+		| Element
+		| {
+				tag: string;
+				attrs?: any;
+				text?: string;
+		  };
 };
 export type AutocompletePluginOptions = {
-    /**
-     * - Debounce delay in ms before processing input.
-     */
-    delayTime?: number;
-    /**
-     * - Maximum number of items to display in the dropdown.
-     */
-    limitSize?: number;
-    /**
-     * - Minimum input length before triggering search.
-     */
-    searchStartLength?: number;
-    /**
-     * - Whether to cache query responses per trigger.
-     */
-    useCachingData?: boolean;
-    /**
-     * - Whether to cache selected items for priority display.
-     */
-    useCachingFieldData?: boolean;
-    /**
-     * - Per-trigger configurations keyed by trigger character.
-     * ```js
-     * // Basic usage with static data — mention trigger
-     * const editor = SUNEDITOR.create('#editor', {
-     * plugins: [autocomplete],
-     * autocomplete: {
-     * triggers: {
-     * '@': {
-     * data: [
-     * { key: 'john', name: 'John Doe' },
-     * { key: 'jane', name: 'Jane Smith' },
-     * ],
-     * },
-     * },
-     * },
-     * });
-     *
-     * // API-based trigger with custom rendering and selection
-     * const editor = SUNEDITOR.create('#editor', {
-     * plugins: [autocomplete],
-     * autocomplete: {
-     * delayTime: 200,
-     * limitSize: 10,
-     * triggers: {
-     * '@': {
-     * apiUrl: '/api/users?q={key}&limit={limitSize}',
-     * apiHeaders: { Authorization: 'Bearer TOKEN' },
-     * transformResponse: (json) => json.data.map((u) => ({ key: u.username, name: u.displayName, id: u.id })),
-     * renderItem: (item) => `<div class="user-item"><strong>${item.key}</strong> <span>${item.name}</span></div>`,
-     * onSelect: (item, trigger) => ({
-     * tag: 'a',
-     * attrs: { href: `/users/${item.id}`, 'data-se-autocomplete': trigger + item.key },
-     * text: trigger + item.key,
-     * }),
-     * },
-     * '#': {
-     * apiUrl: '/api/tags?q={key}',
-     * transformResponse: (json) => json.tags,
-     * searchStartLength: 2,
-     * useCachingData: false,
-     * },
-     * },
-     * },
-     * });
-     * ```
-     */
-    triggers: {
-        [x: string]: AutocompleteTriggerConfig;
-    };
+	/**
+	 * - Debounce delay in ms before processing input.
+	 */
+	delayTime?: number;
+	/**
+	 * - Maximum number of items to display in the dropdown.
+	 */
+	limitSize?: number;
+	/**
+	 * - Minimum input length before triggering search.
+	 */
+	searchStartLength?: number;
+	/**
+	 * - Whether to cache query responses per trigger.
+	 */
+	useCachingData?: boolean;
+	/**
+	 * - Whether to cache selected items for priority display.
+	 */
+	useCachingFieldData?: boolean;
+	/**
+	 * - Per-trigger configurations keyed by trigger character.
+	 * ```js
+	 * // Basic usage with static data — mention trigger
+	 * const editor = SUNEDITOR.create('#editor', {
+	 * plugins: [autocomplete],
+	 * autocomplete: {
+	 * triggers: {
+	 * '@': {
+	 * data: [
+	 * { key: 'john', name: 'John Doe' },
+	 * { key: 'jane', name: 'Jane Smith' },
+	 * ],
+	 * },
+	 * },
+	 * },
+	 * });
+	 *
+	 * // API-based trigger with custom rendering and selection
+	 * const editor = SUNEDITOR.create('#editor', {
+	 * plugins: [autocomplete],
+	 * autocomplete: {
+	 * delayTime: 200,
+	 * limitSize: 10,
+	 * triggers: {
+	 * '@': {
+	 * apiUrl: '/api/users?q={key}&limit={limitSize}',
+	 * apiHeaders: { Authorization: 'Bearer TOKEN' },
+	 * transformResponse: (json) => json.data.map((u) => ({ key: u.username, name: u.displayName, id: u.id })),
+	 * renderItem: (item) => `<div class="user-item"><strong>${item.key}</strong> <span>${item.name}</span></div>`,
+	 * onSelect: (item, trigger) => ({
+	 * tag: 'a',
+	 * attrs: { href: `/users/${item.id}`, 'data-se-autocomplete': trigger + item.key },
+	 * text: trigger + item.key,
+	 * }),
+	 * },
+	 * '#': {
+	 * apiUrl: '/api/tags?q={key}',
+	 * transformResponse: (json) => json.tags,
+	 * searchStartLength: 2,
+	 * useCachingData: false,
+	 * },
+	 * },
+	 * },
+	 * });
+	 * ```
+	 */
+	triggers: {
+		[x: string]: AutocompleteTriggerConfig;
+	};
 };
 /**
  * @typedef {Object} AutocompleteTriggerConfig
@@ -219,20 +232,20 @@ export type AutocompletePluginOptions = {
  * - Uses per-trigger caching for optimized performance.
  */
 declare class Autocomplete extends PluginField {
-    /**
-     * @constructor
-     * @param {SunEditor.Kernel} kernel - The Kernel instance
-     * @param {AutocompletePluginOptions} pluginOptions
-     */
-    constructor(kernel: SunEditor.Kernel, pluginOptions: AutocompletePluginOptions);
-    title: any;
-    triggerContexts: Map<any, any>;
-    sortedTriggers: any[];
-    selectMenu: SelectMenu;
-    controller: Controller;
-    onInput(params: SunEditor.HookParams.InputWithData): Promise<void>;
-    #private;
+	/**
+	 * @constructor
+	 * @param {SunEditor.Kernel} kernel - The Kernel instance
+	 * @param {AutocompletePluginOptions} pluginOptions
+	 */
+	constructor(kernel: SunEditor.Kernel, pluginOptions: AutocompletePluginOptions);
+	title: any;
+	triggerContexts: Map<any, any>;
+	sortedTriggers: any[];
+	selectMenu: SelectMenu;
+	controller: Controller;
+	onInput(params: SunEditor.HookParams.InputWithData): Promise<void>;
+	#private;
 }
 import { PluginField } from '../../interfaces';
-import { SelectMenu } from '../../modules/ui';
 import { Controller } from '../../modules/contract';
+import { SelectMenu } from '../../modules/ui';

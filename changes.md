@@ -1,6 +1,6 @@
 ### change
 
-- `test/dev/shadow_test.html` — Hostile CSS·스트라이크 존·격리 패널·토글; 페이지·패널 12px·#000·#fff; Hostile 시각 완화(26px·연보라 등) 및 `#shadow-test-notice` 안내
+- `test/dev/shadow_test.html` — Shadow DOM 데모 페이지에서 검증 관련 문구/영역(Hostile CSS, 패널, 비교 표 등) 제거하고 Shadow 에디터 단일 데모로 단순화
 
 ### feat
 
@@ -8,6 +8,7 @@
 
 ### fix
 
+- 표 다중 셀 선택 상태에서 툴바 서식 적용 시 선택 블럭(하이라이트)이 풀리며 공통 서식 적용이 불안정하던 문제 개선 — 스냅샷 기반으로 table 선택 상태/클래스를 복원하고, 처리 후 첫 셀에 caret을 접힌 상태로 복구(`tableMultiCellFormat.js`)
 - 표 다중 셀 선택 후 툴바 서식 클릭 시 `wysiwyg` blur가 먼저 실행되어 선택 상태가 지워지고 서식이 적용되지 않던 문제 — 툴바·메뉴 트레이 `mousedown`(캡처)에서 `selectedCells`를 스냅샷해 `click` 처리 시 사용(`handler_toolbar.js`, `handler_ww_mouse.js`, `table.multiCellFormat.js`)
 - Shadow DOM에서 포인터 이벤트의 `event.target`이 호스트로 리타겟될 때 실제 히트 요소를 쓰도록 `getEventTarget`이 `composedPath()`를 사용 — 표 셀 드래그 선택, 셀 컨트롤러(팝업) 외부 클릭 판별 등에 반영(`domQuery.js`)
 - 표 셀 선택 종료 시 `selectedCell`이 없으면 `displayCell`이 `null`이 되어 컨트롤러가 열리지 않던 경우 — `fixedCell`로 폴백(`table.selection.js`)

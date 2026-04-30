@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /**
  * @description Parses an HTML string into a DOM tree, then recursively traverses the nodes to convert them into a structured JSON representation.
  * - Each element includes its tag name, attributes, and children.
@@ -11,7 +12,7 @@
  * @returns {Object<string, *>} JSON data
  */
 export function htmlToJson(content: string): {
-    [x: string]: any;
+	[x: string]: any;
 };
 /**
  * @description Takes a JSON structure representing HTML elements and recursively serializes it into a valid HTML string.
@@ -27,9 +28,7 @@ export function htmlToJson(content: string): {
  * @param {Object<string, *>} jsonData
  * @returns {string} HTML string
  */
-export function jsonToHtml(jsonData: {
-    [x: string]: any;
-}): string;
+export function jsonToHtml(jsonData: { [x: string]: any }): string;
 /**
  * @description Convert HTML string to HTML Entity
  * @param {string} content
@@ -110,7 +109,7 @@ export function kebabToCamelCase(param: Array<string>): Array<string>;
  * @param {string} size Size to convert with units (ex: `"15rem"`)
  * @returns {string}
  */
-export function toFontUnit(to: "em" | "rem" | "%" | "pt" | "px", size: string): string;
+export function toFontUnit(to: 'em' | 'rem' | '%' | 'pt' | 'px', size: string): string;
 /**
  * @description Convert the node list to an array. If not, returns an empty array.
  * @param {?SunEditor.NodeCollection} [nodeList]
@@ -168,10 +167,13 @@ export function textToAnchor(node: Node): boolean;
  * @param {{ regex: RegExp, tag: string }} styleToTag An object mapping style properties to HTML tags. ex) {bold: { regex: /font-weight\s*:\s*bold/i, tag: 'strong' },}
  * @param {Node} node Node
  */
-export function spanToStyleNode(styleToTag: {
-    regex: RegExp;
-    tag: string;
-}, node: Node): void;
+export function spanToStyleNode(
+	styleToTag: {
+		regex: RegExp;
+		tag: string;
+	},
+	node: Node,
+): void;
 /**
  * Adds a query string to a URL. If the URL already contains a query string, the new query is appended to the existing one.
  * @param {string} url The original URL to which the query string will be added.
@@ -202,30 +204,30 @@ export function _setIframeStyleLinks(linkNames: Array<string>): string;
  */
 export function _setAutoHeightStyle(frameHeight: string | number): string;
 export default converter;
-export type OptionStyleResult_converter = import("../core/schema/options").OptionStyleResult;
+export type OptionStyleResult_converter = import('../core/schema/options').OptionStyleResult;
 declare namespace converter {
-    export { htmlToJson };
-    export { jsonToHtml };
-    export { htmlToEntity };
-    export { entityToHTML };
-    export { debounce };
-    export { syncMaps };
-    export { mergeMaps };
-    export { getValues };
-    export { camelToKebabCase };
-    export { kebabToCamelCase };
-    export { toFontUnit };
-    export { nodeListToArray };
-    export { swapKeyValue };
-    export { createElementWhitelist };
-    export { createElementBlacklist };
-    export { isHexColor };
-    export { rgb2hex };
-    export { getWidthInPercentage };
-    export { textToAnchor };
-    export { spanToStyleNode };
-    export { addUrlQuery };
-    export { _setDefaultOptionStyle };
-    export { _setIframeStyleLinks };
-    export { _setAutoHeightStyle };
+	export { htmlToJson };
+	export { jsonToHtml };
+	export { htmlToEntity };
+	export { entityToHTML };
+	export { debounce };
+	export { syncMaps };
+	export { mergeMaps };
+	export { getValues };
+	export { camelToKebabCase };
+	export { kebabToCamelCase };
+	export { toFontUnit };
+	export { nodeListToArray };
+	export { swapKeyValue };
+	export { createElementWhitelist };
+	export { createElementBlacklist };
+	export { isHexColor };
+	export { rgb2hex };
+	export { getWidthInPercentage };
+	export { textToAnchor };
+	export { spanToStyleNode };
+	export { addUrlQuery };
+	export { _setDefaultOptionStyle };
+	export { _setIframeStyleLinks };
+	export { _setAutoHeightStyle };
 }

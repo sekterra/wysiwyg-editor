@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 /**
  * @description Returns the index compared to other sibling nodes.
  * @param {Node} node The Node to find index
@@ -14,10 +15,14 @@ export function getPositionIndex(node: Node): number;
  * Do not use unless absolutely necessary.
  * @returns {Array<number>}
  */
-export function getNodePath(node: Node, parentNode: Node | null, _newOffsets?: {
-    s: number;
-    e: number;
-} | null): Array<number>;
+export function getNodePath(
+	node: Node,
+	parentNode: Node | null,
+	_newOffsets?: {
+		s: number;
+		e: number;
+	} | null,
+): Array<number>;
 /**
  * @template {Node} T
  * @description Returns the node in the location of the path array obtained from `helper.dom.getNodePath`.
@@ -81,11 +86,14 @@ export function sortNodeByDepth(array: Array<Node>, des: boolean): void;
  * const result = dom.query.compareElements(nodeA, nodeB);
  * // result: { ancestor: true, result: 0 } (same node), { ancestor: true, result: 1 } (a before b)
  */
-export function compareElements(a: Node, b: Node): {
-    ancestor: HTMLElement | null;
-    a: Node;
-    b: Node;
-    result: number;
+export function compareElements(
+	a: Node,
+	b: Node,
+): {
+	ancestor: HTMLElement | null;
+	a: Node;
+	b: Node;
+	result: number;
 };
 /**
  * @template {HTMLElement} T
@@ -129,7 +137,7 @@ export function getParentElements<T extends HTMLElement>(element: Node, query: s
 export function getCommandTarget<T extends HTMLElement>(target: Node): T | null;
 /**
  * @template {HTMLElement} T
- * @description Get the event.target element.
+ * @description Get the event target element. For pointer-like events that cross a shadow boundary, `event.target` is retargeted to the shadow host; `composedPath()` is used so hit-testing matches the actual element under the pointer.
  * @param {Event} event Event object
  * @returns {T|null}
  */
@@ -158,9 +166,12 @@ export function getEdgeChild<T extends Node>(node: Node, query: string | ((curre
  * @param {?Node} last Last element
  * @returns {{sc: Node, ec: Node}} { sc: `first`, ec: `last` }
  */
-export function getEdgeChildNodes(first: Node, last: Node | null): {
-    sc: Node;
-    ec: Node;
+export function getEdgeChildNodes(
+	first: Node,
+	last: Node | null,
+): {
+	sc: Node;
+	ec: Node;
 };
 /**
  * @template {Node} T
@@ -218,26 +229,26 @@ export function getScrollParents(element: HTMLElement): HTMLElement[];
 export function getIframeDocument(iframe: HTMLIFrameElement): Document;
 export default query;
 declare namespace query {
-    export { getPositionIndex };
-    export { getNodePath };
-    export { getNodeFromPath };
-    export { getChildNode };
-    export { getListChildren };
-    export { getListChildNodes };
-    export { getNodeDepth };
-    export { sortNodeByDepth };
-    export { compareElements };
-    export { getParentElement };
-    export { getParentElements };
-    export { getCommandTarget };
-    export { getEventTarget };
-    export { getEdgeChild };
-    export { getEdgeChildNodes };
-    export { getPreviousDeepestNode };
-    export { getNextDeepestNode };
-    export { findTextIndexOnLine };
-    export { findTabEndIndex };
-    export { findVisualLastCell };
-    export { getScrollParents };
-    export { getIframeDocument };
+	export { getPositionIndex };
+	export { getNodePath };
+	export { getNodeFromPath };
+	export { getChildNode };
+	export { getListChildren };
+	export { getListChildNodes };
+	export { getNodeDepth };
+	export { sortNodeByDepth };
+	export { compareElements };
+	export { getParentElement };
+	export { getParentElements };
+	export { getCommandTarget };
+	export { getEventTarget };
+	export { getEdgeChild };
+	export { getEdgeChildNodes };
+	export { getPreviousDeepestNode };
+	export { getNextDeepestNode };
+	export { findTextIndexOnLine };
+	export { findTabEndIndex };
+	export { findVisualLastCell };
+	export { getScrollParents };
+	export { getIframeDocument };
 }

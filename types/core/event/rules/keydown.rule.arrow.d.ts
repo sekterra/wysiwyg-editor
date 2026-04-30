@@ -1,3 +1,4 @@
+import type {} from '../../../typedef';
 /**
  * @typedef {import('../actions').Action[]} EventActions
  * @typedef {import('../ports').EventReducerPorts} EventPorts
@@ -13,6 +14,6 @@
  * @param {EventKeydownCtx} ctx - Context object
  */
 export function reduceArrowDown(this: void, actions: EventActions, ports: EventPorts, ctx: EventKeydownCtx): void;
-export type EventActions = import("../actions").Action[];
-export type EventPorts = import("../ports").EventReducerPorts;
-export type EventKeydownCtx = import("../reducers/keydown.reducer").KeydownReducerCtx;
+export type EventActions = import('../actions').Action[];
+export type EventPorts = import('../ports').EventReducerPorts;
+export type EventKeydownCtx = import('../reducers/keydown.reducer').KeydownReducerCtx;

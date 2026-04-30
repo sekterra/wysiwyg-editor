@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 /**
  * @template {Node} T
  * @description Clones a node while preserving its type.
@@ -24,9 +25,13 @@ export function clone<T extends Node>(node: T, deep?: boolean): T;
  * @param {?string|Node} [inner] A innerHTML string or inner node.
  * @returns {T}
  */
-export function createElement<T extends HTMLElement>(elementName: string, attributes?: {
-    [x: string]: string;
-} | null, inner?: (string | Node) | null): T;
+export function createElement<T extends HTMLElement>(
+	elementName: string,
+	attributes?: {
+		[x: string]: string;
+	} | null,
+	inner?: (string | Node) | null,
+): T;
 /**
  * @description Create text node
  * @param {string} text text content
@@ -189,17 +194,17 @@ export function flashClass(element: Node, className: string, duration?: number):
  * @returns {{w: number, h: number}} documentElement.clientWidth, documentElement.clientHeight
  */
 export function getClientSize(doc?: Document): {
-    w: number;
-    h: number;
+	w: number;
+	h: number;
 };
 /**
  * @description Gets the size of the window visualViewport size
  * @returns {{top: number, left: number, scale: number}}
  */
 export function getViewportSize(): {
-    top: number;
-    left: number;
-    scale: number;
+	top: number;
+	left: number;
+	scale: number;
 };
 /**
  * @description Copies the `wwTarget` element and returns it with inline all styles applied.
@@ -240,34 +245,34 @@ export function setRootCssVar(name: string, value: string): void;
 export function createTooltipInner(text: string): string;
 export default utils;
 declare namespace utils {
-    export { clone };
-    export { createElement };
-    export { createTextNode };
-    export { getAttributesToString };
-    export { arrayFilter };
-    export { arrayFind };
-    export { arrayIncludes };
-    export { getArrayIndex };
-    export { nextIndex };
-    export { prevIndex };
-    export { copyTagAttributes };
-    export { copyFormatAttributes };
-    export { removeItem };
-    export { changeElement };
-    export { changeTxt };
-    export { setStyle };
-    export { getStyle };
-    export { setDisabled };
-    export { hasClass };
-    export { addClass };
-    export { removeClass };
-    export { toggleClass };
-    export { flashClass };
-    export { getClientSize };
-    export { getViewportSize };
-    export { applyInlineStylesAll };
-    export { waitForMediaLoad };
-    export { getRootCssVar };
-    export { setRootCssVar };
-    export { createTooltipInner };
+	export { clone };
+	export { createElement };
+	export { createTextNode };
+	export { getAttributesToString };
+	export { arrayFilter };
+	export { arrayFind };
+	export { arrayIncludes };
+	export { getArrayIndex };
+	export { nextIndex };
+	export { prevIndex };
+	export { copyTagAttributes };
+	export { copyFormatAttributes };
+	export { removeItem };
+	export { changeElement };
+	export { changeTxt };
+	export { setStyle };
+	export { getStyle };
+	export { setDisabled };
+	export { hasClass };
+	export { addClass };
+	export { removeClass };
+	export { toggleClass };
+	export { flashClass };
+	export { getClientSize };
+	export { getViewportSize };
+	export { applyInlineStylesAll };
+	export { waitForMediaLoad };
+	export { getRootCssVar };
+	export { setRootCssVar };
+	export { createTooltipInner };
 }

@@ -1,3 +1,4 @@
+import type {} from '../../../../typedef';
 /** ================================================================================================================================ */
 /**
  * @description Checks if the given node is a resizable table element.
@@ -58,9 +59,12 @@ export function GetLogicalCellIndex(table: HTMLTableElement, rowIndex: number, c
  * @param {HTMLTableCellElement[]} selectedCells Selected cells array
  * @returns {{ clonedTable: HTMLTableElement, clonedSelectedCells: HTMLTableCellElement[] }}
  */
-export function CloneTable(table: HTMLTableElement, selectedCells: HTMLTableCellElement[]): {
-    clonedTable: HTMLTableElement;
-    clonedSelectedCells: HTMLTableCellElement[];
+export function CloneTable(
+	table: HTMLTableElement,
+	selectedCells: HTMLTableCellElement[],
+): {
+	clonedTable: HTMLTableElement;
+	clonedSelectedCells: HTMLTableCellElement[];
 };
 /**
  * @description Clear table cache
@@ -72,10 +76,16 @@ export function InvalidateTableCache(table: HTMLTableElement): void;
  * - Stores the calculated logical start/end positions (row, col) for a given selection.
  * @type {WeakMap<HTMLTableElement, Map<string, {cs: number, ce: number, rs: number, re: number, _i: number}>>}
  */
-export const refCache: WeakMap<HTMLTableElement, Map<string, {
-    cs: number;
-    ce: number;
-    rs: number;
-    re: number;
-    _i: number;
-}>>;
+export const refCache: WeakMap<
+	HTMLTableElement,
+	Map<
+		string,
+		{
+			cs: number;
+			ce: number;
+			rs: number;
+			re: number;
+			_i: number;
+		}
+	>
+>;

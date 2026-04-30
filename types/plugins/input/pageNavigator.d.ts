@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 export default PageNavigator;
 /**
  * @class
@@ -8,17 +9,17 @@ export default PageNavigator;
  * - a page navigation event through the editor's document context.
  */
 declare class PageNavigator extends PluginInput {
-    title: any;
-    inner: HTMLInputElement;
-    pageNum: number;
-    totalPages: number;
-    /**
-     * Updates the displayed page number and total pages in the navigator.
-     * @param {number} pageNum - The current page number to display.
-     * @param {number} totalPages - The total number of pages in the document.
-     * @returns {void}
-     */
-    display(pageNum: number, totalPages: number): void;
-    #private;
+	title: any;
+	inner: HTMLInputElement;
+	pageNum: number;
+	totalPages: number;
+	/**
+	 * Updates the displayed page number and total pages in the navigator.
+	 * @param {number} pageNum - The current page number to display.
+	 * @param {number} totalPages - The total number of pages in the document.
+	 * @returns {void}
+	 */
+	display(pageNum: number, totalPages: number): void;
+	#private;
 }
 import { PluginInput } from '../../interfaces';

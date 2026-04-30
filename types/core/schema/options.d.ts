@@ -1,43 +1,44 @@
+import type {} from '../../typedef';
 export namespace DEFAULTS {
-    let BUTTON_LIST: (string | string[])[];
-    let REQUIRED_FORMAT_LINE: string;
-    let REQUIRED_ELEMENT_WHITELIST: string;
-    let ELEMENT_WHITELIST: string;
-    let TEXT_STYLE_TAGS: string;
-    let SCOPE_SELECTION_TAGS: string[];
-    let ATTRIBUTE_WHITELIST: string;
-    let FORMAT_LINE: string;
-    let FORMAT_BR_LINE: string;
-    let FORMAT_CLOSURE_BR_LINE: string;
-    let FORMAT_BLOCK: string;
-    let FORMAT_CLOSURE_BLOCK: string;
-    let ALLOWED_EMPTY_NODE_LIST: string;
-    let SIZE_UNITS: string[];
-    let CLASS_NAME: string;
-    let CLASS_MJX: string;
-    let EXTRA_TAG_MAP: {
-        script: boolean;
-        style: boolean;
-        meta: boolean;
-        link: boolean;
-        '[a-z]+:[a-z]+': boolean;
-    };
-    let CONTENT_STYLES: string;
-    let TAG_STYLES: {
-        'table|th|td': string;
-        'table|td': string;
-        tr: string;
-        col: string;
-        caption: string;
-        'ol|ul': string;
-        figure: string;
-        figcaption: string;
-        'img|video|iframe': string;
-        hr: string;
-    };
-    let SPAN_STYLES: string;
-    let LINE_STYLES: string;
-    let RETAIN_STYLE_MODE: string[];
+	let BUTTON_LIST: (string | string[])[];
+	let REQUIRED_FORMAT_LINE: string;
+	let REQUIRED_ELEMENT_WHITELIST: string;
+	let ELEMENT_WHITELIST: string;
+	let TEXT_STYLE_TAGS: string;
+	let SCOPE_SELECTION_TAGS: string[];
+	let ATTRIBUTE_WHITELIST: string;
+	let FORMAT_LINE: string;
+	let FORMAT_BR_LINE: string;
+	let FORMAT_CLOSURE_BR_LINE: string;
+	let FORMAT_BLOCK: string;
+	let FORMAT_CLOSURE_BLOCK: string;
+	let ALLOWED_EMPTY_NODE_LIST: string;
+	let SIZE_UNITS: string[];
+	let CLASS_NAME: string;
+	let CLASS_MJX: string;
+	let EXTRA_TAG_MAP: {
+		script: boolean;
+		style: boolean;
+		meta: boolean;
+		link: boolean;
+		'[a-z]+:[a-z]+': boolean;
+	};
+	let CONTENT_STYLES: string;
+	let TAG_STYLES: {
+		'table|th|td': string;
+		'table|td': string;
+		tr: string;
+		col: string;
+		caption: string;
+		'ol|ul': string;
+		figure: string;
+		figcaption: string;
+		'img|video|iframe': string;
+		hr: string;
+	};
+	let SPAN_STYLES: string;
+	let LINE_STYLES: string;
+	let RETAIN_STYLE_MODE: string[];
 }
 /**
  * ================================================================================================================================
@@ -241,6 +242,7 @@ export namespace DEFAULTS {
  * @property {Object<string, string>} [lang] - Language configuration. default : EN
  * @property {Object<string, string>} [icons] - Overrides the default icons.
  * @property {"ltr"|"rtl"} [textDirection="ltr"] - Text direction: `ltr` or `rtl`.
+ * @property {ShadowRoot} [shadowRoot] - Explicit ShadowRoot to use for selection tracking in Shadow DOM integrations.
  * @property {Array<string>} [reverseButtons=['indent-outdent']] - An array of command pairs whose shortcut icons should be opposite each other.
  * - Depends on the `textDirection` mode.
  * ///
@@ -618,183 +620,183 @@ export const OPTION_FIXED_FLAG: Partial<any>;
  * === Content & Editing ===
  */
 export type EditorFrameOptions = {
-    /**
-     * - Initial value for the editor.
-     */
-    value?: string;
-    /**
-     * - Placeholder text.
-     */
-    placeholder?: string;
-    /**
-     * - Attributes for the editable frame[.sun-editor-editable].
-     * ```js
-     * { editableFrameAttributes: { spellcheck: 'true', autocomplete: 'on' } }
-     * ```
-     * ///
-     *
-     * === Layout & Sizing ===
-     */
-    editableFrameAttributes?: {
-        [x: string]: string;
-    };
-    /**
-     * - Width for the editor.
-     */
-    width?: string | number;
-    /**
-     * - Min width for the editor.
-     */
-    minWidth?: string | number;
-    /**
-     * - Max width for the editor.
-     */
-    maxWidth?: string | number;
-    /**
-     * - Height for the editor.
-     */
-    height?: string | number;
-    /**
-     * - Min height for the editor.
-     */
-    minHeight?: string | number;
-    /**
-     * - Max height for the editor.
-     */
-    maxHeight?: string | number;
-    /**
-     * - Style string of the top frame of the editor.
-     * ```js
-     * { editorStyle: 'border: 1px solid #ccc; border-radius: 4px;' }
-     * ```
-     * ///
-     *
-     * === Iframe Mode ===
-     */
-    editorStyle?: string;
-    /**
-     * - Content will be placed in an iframe and isolated from the rest of the page.
-     */
-    iframe?: boolean;
-    /**
-     * - Allows the usage of HTML, HEAD, BODY tags and DOCTYPE declaration on the `iframe`.
-     */
-    iframe_fullPage?: boolean;
-    /**
-     * - Attributes of the `iframe`.
-     * ```js
-     * { iframe_attributes: { 'allow-scripts': 'true', sandbox: 'allow-same-origin' } }
-     * ```
-     */
-    iframe_attributes?: {
-        [x: string]: string;
-    };
-    /**
-     * - CSS files to apply inside the iframe.
-     * - String: Filename pattern to search in document `<link>` tags.
-     * - `"*"`: Wildcard to include ALL stylesheets from the page.
-     * - Absolute URLs and data URLs (`data:text/css,`) are also supported.
-     * ```js
-     * { iframe_cssFileName: ['suneditor', 'custom', 'https://example.com/style.css'] }
-     * ```
-     * ///
-     *
-     * === Statusbar & Character Counter ===
-     */
-    iframe_cssFileName?: Array<string>;
-    /**
-     * - Enables the status bar.
-     */
-    statusbar?: boolean;
-    /**
-     * - Displays the current node structure in the status bar.
-     */
-    statusbar_showPathLabel?: boolean;
-    /**
-     * - Enables resize function of the bottom status bar.
-     */
-    statusbar_resizeEnable?: boolean;
-    /**
-     * - Shows the number of characters in the editor.
-     * - If the `maxCharCount` option has a value, it becomes `true`.
-     */
-    charCounter?: boolean;
-    /**
-     * - The maximum number of characters allowed to be inserted into the editor.
-     */
-    charCounter_max?: number | null;
-    /**
-     * - Text to be displayed in the `charCounter` area of the bottom bar.
-     * ```js
-     * { charCounter_label: 'Characters :' }
-     * ```
-     */
-    charCounter_label?: string | null;
-    /**
-     * - Defines the calculation method of the `charCounter` option.
-     * - `char`: Characters length.
-     * - `byte`: Binary data size of characters.
-     * - `byte-html`: Binary data size of the full HTML string.
-     *
-     * === Word Counter ===
-     */
-    charCounter_type?: "char" | "byte" | "byte-html";
-    /**
-     * - Shows the number of words in the editor.
-     */
-    wordCounter?: boolean;
-    /**
-     * - Text to be displayed in the `wordCounter` area of the bottom bar.
-     * ```js
-     * { wordCounter_label: 'Words :' }
-     * ```
-     */
-    wordCounter_label?: string | null;
+	/**
+	 * - Initial value for the editor.
+	 */
+	value?: string;
+	/**
+	 * - Placeholder text.
+	 */
+	placeholder?: string;
+	/**
+	 * - Attributes for the editable frame[.sun-editor-editable].
+	 * ```js
+	 * { editableFrameAttributes: { spellcheck: 'true', autocomplete: 'on' } }
+	 * ```
+	 * ///
+	 *
+	 * === Layout & Sizing ===
+	 */
+	editableFrameAttributes?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Width for the editor.
+	 */
+	width?: string | number;
+	/**
+	 * - Min width for the editor.
+	 */
+	minWidth?: string | number;
+	/**
+	 * - Max width for the editor.
+	 */
+	maxWidth?: string | number;
+	/**
+	 * - Height for the editor.
+	 */
+	height?: string | number;
+	/**
+	 * - Min height for the editor.
+	 */
+	minHeight?: string | number;
+	/**
+	 * - Max height for the editor.
+	 */
+	maxHeight?: string | number;
+	/**
+	 * - Style string of the top frame of the editor.
+	 * ```js
+	 * { editorStyle: 'border: 1px solid #ccc; border-radius: 4px;' }
+	 * ```
+	 * ///
+	 *
+	 * === Iframe Mode ===
+	 */
+	editorStyle?: string;
+	/**
+	 * - Content will be placed in an iframe and isolated from the rest of the page.
+	 */
+	iframe?: boolean;
+	/**
+	 * - Allows the usage of HTML, HEAD, BODY tags and DOCTYPE declaration on the `iframe`.
+	 */
+	iframe_fullPage?: boolean;
+	/**
+	 * - Attributes of the `iframe`.
+	 * ```js
+	 * { iframe_attributes: { 'allow-scripts': 'true', sandbox: 'allow-same-origin' } }
+	 * ```
+	 */
+	iframe_attributes?: {
+		[x: string]: string;
+	};
+	/**
+	 * - CSS files to apply inside the iframe.
+	 * - String: Filename pattern to search in document `<link>` tags.
+	 * - `"*"`: Wildcard to include ALL stylesheets from the page.
+	 * - Absolute URLs and data URLs (`data:text/css,`) are also supported.
+	 * ```js
+	 * { iframe_cssFileName: ['suneditor', 'custom', 'https://example.com/style.css'] }
+	 * ```
+	 * ///
+	 *
+	 * === Statusbar & Character Counter ===
+	 */
+	iframe_cssFileName?: Array<string>;
+	/**
+	 * - Enables the status bar.
+	 */
+	statusbar?: boolean;
+	/**
+	 * - Displays the current node structure in the status bar.
+	 */
+	statusbar_showPathLabel?: boolean;
+	/**
+	 * - Enables resize function of the bottom status bar.
+	 */
+	statusbar_resizeEnable?: boolean;
+	/**
+	 * - Shows the number of characters in the editor.
+	 * - If the `maxCharCount` option has a value, it becomes `true`.
+	 */
+	charCounter?: boolean;
+	/**
+	 * - The maximum number of characters allowed to be inserted into the editor.
+	 */
+	charCounter_max?: number | null;
+	/**
+	 * - Text to be displayed in the `charCounter` area of the bottom bar.
+	 * ```js
+	 * { charCounter_label: 'Characters :' }
+	 * ```
+	 */
+	charCounter_label?: string | null;
+	/**
+	 * - Defines the calculation method of the `charCounter` option.
+	 * - `char`: Characters length.
+	 * - `byte`: Binary data size of characters.
+	 * - `byte-html`: Binary data size of the full HTML string.
+	 *
+	 * === Word Counter ===
+	 */
+	charCounter_type?: 'char' | 'byte' | 'byte-html';
+	/**
+	 * - Shows the number of words in the editor.
+	 */
+	wordCounter?: boolean;
+	/**
+	 * - Text to be displayed in the `wordCounter` area of the bottom bar.
+	 * ```js
+	 * { wordCounter_label: 'Words :' }
+	 * ```
+	 */
+	wordCounter_label?: string | null;
 };
 export type OptionStyleResult = {
-    /**
-     * - Styles applied to the top container (e.g. width, z-index, etc).
-     */
-    top: string;
-    /**
-     * - Styles applied to the iframe container (e.g. height, min-height).
-     */
-    frame: string;
-    /**
-     * - Styles applied to the editable content area.
-     */
-    editor: string;
+	/**
+	 * - Styles applied to the top container (e.g. width, z-index, etc).
+	 */
+	top: string;
+	/**
+	 * - Styles applied to the iframe container (e.g. height, min-height).
+	 */
+	frame: string;
+	/**
+	 * - Styles applied to the editable content area.
+	 */
+	editor: string;
 };
 /**
  * **Runtime-only frame options (computed internally, cannot be set by users)**
  */
 export type InternalFrameOptions = {
-    /**
-     * - Status bar event configuration.
-     */
-    __statusbarEvent?: any;
-    /**
-     * - origin frame options
-     */
-    _origin: SunEditor.InitFrameOptions;
-    /**
-     * - Enables fixed positioning for the editor frame.
-     */
-    _defaultStyles?: OptionStyleResult;
-    /**
-     * - CodeMirror editor instance (frame-level). Set by `_checkCodeMirror` after initialization.
-     */
-    codeMirrorEditor?: any;
+	/**
+	 * - Status bar event configuration.
+	 */
+	__statusbarEvent?: any;
+	/**
+	 * - origin frame options
+	 */
+	_origin: SunEditor.InitFrameOptions;
+	/**
+	 * - Enables fixed positioning for the editor frame.
+	 */
+	_defaultStyles?: OptionStyleResult;
+	/**
+	 * - CodeMirror editor instance (frame-level). Set by `_checkCodeMirror` after initialization.
+	 */
+	codeMirrorEditor?: any;
 };
 export type AllFrameOptions = EditorFrameOptions & InternalFrameOptions;
-export type TransformedFrameOptionKeys = "width" | "minWidth" | "maxWidth" | "height" | "minHeight" | "maxHeight";
+export type TransformedFrameOptionKeys = 'width' | 'minWidth' | 'maxWidth' | 'height' | 'minHeight' | 'maxHeight';
 export type TransformedFrameOptions = {
-    width: string;
-    minWidth: string;
-    maxWidth: string;
-    height: string;
-    minHeight: string;
-    maxHeight: string;
+	width: string;
+	minWidth: string;
+	maxWidth: string;
+	height: string;
+	minHeight: string;
+	maxHeight: string;
 };
 export type ProcessedFrameOptions = Omit<AllFrameOptions, TransformedFrameOptionKeys> & TransformedFrameOptions;
 /**
@@ -804,91 +806,93 @@ export type ProcessedFrameOptions = Omit<AllFrameOptions, TransformedFrameOption
  * === Defaults & Whitelists ===
  */
 export type PrivateBaseOptions = {
-    /**
-     * - The basic tags that serves as the base for `textStyleTags`
-     * - The default follows {@link DEFAULTS.TEXT_STYLE_TAGS}
-     */
-    __textStyleTags?: string;
-    /**
-     * - The basic tags that serves as the base for `tagStyles`
-     * - The default follows {@link DEFAULTS.TAG_STYLES}
-     */
-    __tagStyles?: {
-        [x: string]: string;
-    };
-    /**
-     * - A custom string used to construct a list of HTML elements to allow.
-     * - The final list (regex pattern) is dynamically generated according to the following rules:
-     * - A list of required elements, {@link DEFAULTS.REQUIRED_ELEMENT_WHITELIST}, is always included.
-     * - If this option (`__defaultElementWhitelist`) is provided as a string: That value is used.
-     * - If not provided or not a string: The default {@link DEFAULTS.ELEMENT_WHITELIST} is used.
-     * - 1. If no options are given, the final pattern is:
-     * - 'a|img|p|div|...' (REQUIRED + DEFAULT)
-     * - 2. If options are given directly, the final pattern is:
-     * - 'a|img|custom|tags' (REQUIRED + options.__defaultElementWhitelist)
-     */
-    __defaultElementWhitelist?: string;
-    /**
-     * - A complete list of attributes that are allowed by default on all tags. Delimiter: `"|"`.
-     * - The default follows {@link DEFAULTS.ATTRIBUTE_WHITELIST}```js
-     * { __defaultAttributeWhitelist: 'href|target|src|alt|class' }
-     * ```
-     * ///
-     *
-     * === Formatting  ===
-     */
-    __defaultAttributeWhitelist?: string;
-    /**
-     * - Specifies the tag to be used as the editor's default `line` element.
-     * - The default follows {@link DEFAULTS.FORMAT_LINE}
-     */
-    __defaultFormatLine?: string;
-    /**
-     * - Specifies the tag to be used as the editor's default `brLine` element.
-     * - The default follows {@link DEFAULTS.FORMAT_BR_LINE}
-     */
-    __defaultFormatBrLine?: string;
-    /**
-     * - Specifies the tag to be used as the editor's default `closureBrLine` element.
-     * - The default follows {@link DEFAULTS.FORMAT_CLOSURE_BR_LINE}
-     */
-    __defaultFormatClosureBrLine?: string;
-    /**
-     * - Specifies the tag to be used as the editor's default `block` element.
-     * - The default follows {@link DEFAULTS.FORMAT_BLOCK}
-     */
-    __defaultFormatBlock?: string;
-    /**
-     * - Specifies the tag to be used as the editor's default `closureBlock` element.
-     * - The default follows {@link DEFAULTS.FORMAT_CLOSURE_BLOCK}///
-     *
-     * === Filters & Behavior ===
-     */
-    __defaultFormatClosureBlock?: string;
-    /**
-     * - Line format filter configuration.
-     */
-    __lineFormatFilter?: boolean;
-    /**
-     * - Defines the styles applied directly to `<li>` when a text style is set on the entire list item.
-     * - For example, when changing the font size or color of a list item (`<li>`),
-     * - these styles apply to the `<li>` tag instead of wrapping content in additional tags.
-     */
-    __listCommonStyle?: Array<string>;
-    /**
-     * - Plugin retain filter configuration. (Internal use primarily)
-     * - You can turn it off/on globally with `true`/`false` or set it per plugin.
-     * ```js
-     * // disable filter for table plugin only
-     * {
-     * __pluginRetainFilter: { table: false }
-     * }
-     * ```
-     */
-    __pluginRetainFilter?: {
-        pluginName: string;
-        we: boolean;
-    } | boolean;
+	/**
+	 * - The basic tags that serves as the base for `textStyleTags`
+	 * - The default follows {@link DEFAULTS.TEXT_STYLE_TAGS}
+	 */
+	__textStyleTags?: string;
+	/**
+	 * - The basic tags that serves as the base for `tagStyles`
+	 * - The default follows {@link DEFAULTS.TAG_STYLES}
+	 */
+	__tagStyles?: {
+		[x: string]: string;
+	};
+	/**
+	 * - A custom string used to construct a list of HTML elements to allow.
+	 * - The final list (regex pattern) is dynamically generated according to the following rules:
+	 * - A list of required elements, {@link DEFAULTS.REQUIRED_ELEMENT_WHITELIST}, is always included.
+	 * - If this option (`__defaultElementWhitelist`) is provided as a string: That value is used.
+	 * - If not provided or not a string: The default {@link DEFAULTS.ELEMENT_WHITELIST} is used.
+	 * - 1. If no options are given, the final pattern is:
+	 * - 'a|img|p|div|...' (REQUIRED + DEFAULT)
+	 * - 2. If options are given directly, the final pattern is:
+	 * - 'a|img|custom|tags' (REQUIRED + options.__defaultElementWhitelist)
+	 */
+	__defaultElementWhitelist?: string;
+	/**
+	 * - A complete list of attributes that are allowed by default on all tags. Delimiter: `"|"`.
+	 * - The default follows {@link DEFAULTS.ATTRIBUTE_WHITELIST}```js
+	 * { __defaultAttributeWhitelist: 'href|target|src|alt|class' }
+	 * ```
+	 * ///
+	 *
+	 * === Formatting  ===
+	 */
+	__defaultAttributeWhitelist?: string;
+	/**
+	 * - Specifies the tag to be used as the editor's default `line` element.
+	 * - The default follows {@link DEFAULTS.FORMAT_LINE}
+	 */
+	__defaultFormatLine?: string;
+	/**
+	 * - Specifies the tag to be used as the editor's default `brLine` element.
+	 * - The default follows {@link DEFAULTS.FORMAT_BR_LINE}
+	 */
+	__defaultFormatBrLine?: string;
+	/**
+	 * - Specifies the tag to be used as the editor's default `closureBrLine` element.
+	 * - The default follows {@link DEFAULTS.FORMAT_CLOSURE_BR_LINE}
+	 */
+	__defaultFormatClosureBrLine?: string;
+	/**
+	 * - Specifies the tag to be used as the editor's default `block` element.
+	 * - The default follows {@link DEFAULTS.FORMAT_BLOCK}
+	 */
+	__defaultFormatBlock?: string;
+	/**
+	 * - Specifies the tag to be used as the editor's default `closureBlock` element.
+	 * - The default follows {@link DEFAULTS.FORMAT_CLOSURE_BLOCK}///
+	 *
+	 * === Filters & Behavior ===
+	 */
+	__defaultFormatClosureBlock?: string;
+	/**
+	 * - Line format filter configuration.
+	 */
+	__lineFormatFilter?: boolean;
+	/**
+	 * - Defines the styles applied directly to `<li>` when a text style is set on the entire list item.
+	 * - For example, when changing the font size or color of a list item (`<li>`),
+	 * - these styles apply to the `<li>` tag instead of wrapping content in additional tags.
+	 */
+	__listCommonStyle?: Array<string>;
+	/**
+	 * - Plugin retain filter configuration. (Internal use primarily)
+	 * - You can turn it off/on globally with `true`/`false` or set it per plugin.
+	 * ```js
+	 * // disable filter for table plugin only
+	 * {
+	 * __pluginRetainFilter: { table: false }
+	 * }
+	 * ```
+	 */
+	__pluginRetainFilter?:
+		| {
+				pluginName: string;
+				we: boolean;
+		  }
+		| boolean;
 };
 /**
  * **Top-level editor configuration**
@@ -897,721 +901,742 @@ export type PrivateBaseOptions = {
  * === Plugins & Toolbar ===
  */
 export type EditorBaseOptions = {
-    /**
-     * - Plugin configuration. Pass an array of plugin classes or an object keyed by plugin name.
-     * ```js
-     * import plugins, { image, link, table } from 'suneditor/src/plugins';
-     * { plugins: plugins,
-     * plugins: [image, link, table],
-     * plugins: { image, link, table }
-     * }
-     * ```
-     */
-    plugins?: {
-        [x: string]: any;
-    } | Array<{
-        [x: string]: any;
-    }>;
-    /**
-     * - List of plugin names to exclude.
-     * ```js
-     * { excludedPlugins: ['image', 'video'] }
-     * ```
-     */
-    excludedPlugins?: Array<string>;
-    /**
-     * - List of toolbar buttons, grouped by sub-arrays.
-     * - The default follows {@link DEFAULTS.BUTTON_LIST}///
-     *
-     * === Modes & Themes ===
-     */
-    buttonList?: SunEditor.UI.ButtonList;
-    /**
-     * - Enables migration mode for SunEditor v2.
-     */
-    v2Migration?: boolean;
-    /**
-     * - Toolbar mode: `classic`, `inline`, `balloon`, `balloon-always`. Append `:bottom` to place toolbar at the bottom (e.g. `classic:bottom`, `inline:bottom`).
-     */
-    mode?: "classic" | "inline" | "balloon" | "balloon-always" | "classic:bottom" | "inline:bottom";
-    /**
-     * - Editor type. Use `"document"` for a document-style layout, with optional sub-types after `:`.
-     * ```js
-     * // type
-     * 'document:header,page'
-     * ```
-     */
-    type?: string;
-    /**
-     * - Editor theme.
-     */
-    theme?: string;
-    /**
-     * - Language configuration. default : EN
-     */
-    lang?: {
-        [x: string]: string;
-    };
-    /**
-     * - Overrides the default icons.
-     */
-    icons?: {
-        [x: string]: string;
-    };
-    /**
-     * - Text direction: `ltr` or `rtl`.
-     */
-    textDirection?: "ltr" | "rtl";
-    /**
-     * - An array of command pairs whose shortcut icons should be opposite each other.
-     * - Depends on the `textDirection` mode.
-     * ///
-     *
-     * === Strict & Advanced Filtering ===
-     */
-    reverseButtons?: Array<string>;
-    /**
-     * - Enables strict filtering of tags, attributes, and styles.
-     * - Use `true` to enable all filters (default), or an object to control individual filters.
-     * - Setting `false` is not supported; use the object form to disable specific filters instead.
-     * - :filter description
-     * - `tagFilter`: Filters disallowed HTML tags (`elementWhitelist`/`elementBlacklist`)
-     * - `formatFilter`: Filters format elements (`formatLine`/`formatBlock`)
-     * - `classFilter`: Filters disallowed CSS class names (`allowedClassName`)
-     * - `textStyleTagFilter`: Filters text style tags (b, i, u, span, etc.)
-     * - `attrFilter`: Filters disallowed HTML attributes (`attributeWhitelist`/`attributeBlacklist`)
-     * - `styleFilter`: Filters disallowed inline styles (`spanStyles`/`lineStyles`/`allUsedStyles`)
-     * ```js
-     * // disable only attribute and style filters
-     * {
-     * strictMode: {
-     * tagFilter: true,
-     * formatFilter: true,
-     * classFilter: true,
-     * textStyleTagFilter: true,
-     * attrFilter: false,
-     * styleFilter: false
-     * }
-     * }
-     * ```
-     */
-    strictMode?: true | {
-        tagFilter: boolean;
-        formatFilter: boolean;
-        classFilter: boolean;
-        textStyleTagFilter: boolean;
-        attrFilter: boolean;
-        styleFilter: boolean;
-    };
-    /**
-     * - Tags treated as whole units when selecting all content.
-     * - The default follows {@link DEFAULTS.SCOPE_SELECTION_TAGS}///
-     *
-     * === Content Filtering & Formatting ===
-     * ==
-     * #### 1) Tag & Element Control
-     */
-    scopeSelectionTags?: Array<string>;
-    /**
-     * - Specifies HTML elements to additionally allow beyond the default allow list. Delimiter: `"|"`.
-     * - Added to the default list determined by {@link PrivateBaseOptions.__defaultElementWhitelist}.
-     * ```js
-     * { elementWhitelist: 'mark|details|summary' }
-     * ```
-     */
-    elementWhitelist?: string;
-    /**
-     * - Specifies HTML elements that should not be used. Delimiter: `"|"`.
-     * - Tags specified here will eventually be removed, even if they are included in other whitelists.
-     * ```js
-     * { elementBlacklist: 'script|style|iframe' }
-     * ```
-     */
-    elementBlacklist?: string;
-    /**
-     * - A list of tags that are allowed to be kept even if their values are empty.
-     * - The default follows {@link DEFAULTS.ALLOWED_EMPTY_NODE_LIST}- Concatenated with `ALLOWED_EMPTY_NODE_LIST` to form the final `allowedEmptyTags` list.
-     */
-    allowedEmptyTags?: string;
-    /**
-     * - Allowed class names.
-     * - Added the default value {@link DEFAULTS.CLASS_NAME}///
-     *
-     * #### 2) Attribute Control
-     */
-    allowedClassName?: string;
-    /**
-     * - Specifies additional attributes to allow for each tag. `"*"` applies to all tags.
-     * - Rules specified here will be merged into {@link PrivateBaseOptions.__defaultAttributeWhitelist}.
-     * ```js
-     * {
-     * attributeWhitelist: {
-     * a: 'href|target',
-     * img: 'src|alt',
-     * '*': 'id|data-*'
-     * }
-     * }
-     * ```
-     */
-    attributeWhitelist?: {
-        [key: string]: string | undefined;
-    };
-    /**
-     * - Specifies attributes to disallow by tag. `"*"` applies to all tags.
-     * - Attributes specified here will eventually be removed even if they are allowed by other settings.
-     * - A list of required elements, {@link DEFAULTS.REQUIRED_FORMAT_LINE}, is always included.
-     * ```js
-     * { attributeBlacklist: { '*': 'onclick|onerror' } }
-     * ```
-     * ///
-     *
-     * #### 3) Text & Inline Style Control
-     */
-    attributeBlacklist?: {
-        [key: string]: string | undefined;
-    };
-    /**
-     * - Additional text style tags.
-     * - The default follows {@link PrivateBaseOptions.__textStyleTags}
-     */
-    textStyleTags?: string;
-    /**
-     * - Maps text styles to specific HTML tags.
-     * ```js
-     * {
-     * convertTextTags: {
-     * bold: 'b',
-     * italic: 'i',
-     * underline: 'u',
-     * strike: 's'
-     * }
-     * }
-     * ```
-     */
-    convertTextTags?: {
-        [x: string]: string;
-    };
-    /**
-     * - Specifies additional styles to the list of allowed styles. Delimiter: `"|"`.
-     * ```js
-     * { allUsedStyles: 'color|background-color|text-shadow' }
-     * ```
-     */
-    allUsedStyles?: string;
-    /**
-     * - Specifies allowed styles for HTML tags. Key is tag name(s), value is pipe-delimited allowed styles.
-     * ```js
-     * {
-     * tagStyles: {
-     * 'table|td': 'border|color|background-color',
-     * hr: 'border-top'
-     * }
-     * }
-     * ```
-     */
-    tagStyles?: {
-        [x: string]: string;
-    };
-    /**
-     * - Specifies allowed styles for the `span` tag.
-     * - The default follows {@link DEFAULTS.SPAN_STYLES}
-     */
-    spanStyles?: string;
-    /**
-     * - Specifies allowed styles for the `line` element (p..).
-     * - The default follows {@link DEFAULTS.LINE_STYLES}
-     */
-    lineStyles?: string;
-    /**
-     * - Allowed font size units.
-     * - The default follows {@link DEFAULTS.SIZE_UNITS}
-     */
-    fontSizeUnits?: Array<string>;
-    /**
-     * - Determines how inline elements (e.g. `<span>`, `<strong>`) are handled when deleting text.
-     * - `repeat`: Styles are retained unless backspace is repeatedly pressed.
-     * - Continuous pressing will eventually remove the styles.
-     * - `none`: Styles are not retained. Inline elements are immediately removed with the text.
-     * - `always`: Styles persist indefinitely unless explicitly removed.
-     * - Even if all text inside an inline element is deleted, the element itself remains.
-     * ///
-     *
-     * #### 4) Line & Block Formatting
-     */
-    retainStyleMode?: "repeat" | "always" | "none";
-    /**
-     * - Default `line` element when inserting new lines.
-     */
-    defaultLine?: string;
-    /**
-     * - Specifies the default line break format.
-     * - [Recommended] `line` : Line break is divided into general tags.
-     * - [Not recommended] `br` : Line breaks are treated as <br> on the same line. (like shift+enter)
-     * - Line breaks are handled as <br> within `line`.
-     * - You can create a new `line` by entering a line break twice in a row.
-     * - Formats that include `line`, such as "Quote", still operate on a `line` basis.
-     * - suneditor processes work in `line` units.
-     * - When set to `br`, performance may decrease when editing a lot of data.
-     */
-    defaultLineBreakFormat?: "line" | "br";
-    /**
-     * - Line properties that should be reset when changing lines. Delimiter: `"|"`.
-     * ```js
-     * { lineAttrReset: 'id|name' }
-     * ```
-     */
-    lineAttrReset?: string;
-    /**
-     * - Additionally allowed `line` elements beyond the default. Delimiter: `"|"`.
-     * - Concatenated with {@link PrivateBaseOptions.__defaultFormatLine} to form the final `line` list.
-     * - `line` element also contains `brLine` element.
-     * ```js
-     * { formatLine: 'ARTICLE|SECTION' }
-     * ```
-     */
-    formatLine?: string;
-    /**
-     * - Additionally allowed `brLine` elements beyond the default.
-     * - Concatenated with {@link PrivateBaseOptions.__defaultFormatBrLine} to form the final `brLine` list.
-     * - `brLine` elements are included in the `line` element.
-     * - `brLine` elements' line break is `BR` tag.
-     * ```js
-     * { formatBrLine: 'CODE' }
-     * ```
-     * - ※ Entering the Enter key on the last line ends `brLine` and appends `line`.
-     */
-    formatBrLine?: string;
-    /**
-     * - Additionally allowed `closureBrLine` elements beyond the default.
-     * - Concatenated with {@link PrivateBaseOptions.__defaultFormatClosureBrLine} for the final `closureBrLine` list.
-     * - `closureBrLine` elements are included in the `brLine`.
-     * - `closureBrLine` elements' line break is `BR` tag.
-     * - ※ You cannot exit this format with the Enter key or Backspace key.
-     * - ※ Use it only in special cases. ([ex] format of table cells)
-     */
-    formatClosureBrLine?: string;
-    /**
-     * - Additionally allowed `block` elements beyond the default.
-     * - Concatenated with {@link PrivateBaseOptions.__defaultFormatBlock} to form the final `block` list.
-     * - `block` wraps the `line` and `component`.
-     */
-    formatBlock?: string;
-    /**
-     * - Additionally allowed `closureBlock` elements beyond the default.
-     * - Concatenated with {@link PrivateBaseOptions.__defaultFormatClosureBlock} for the final `closureBlock` list.
-     * - `closureBlock` elements are included in the `block`.
-     * - `closureBlock` element wraps the `line` and `component`.
-     * - ※ You cannot exit this format with the Enter key or Backspace key.
-     * - ※ Use it only in special cases. (e.g. format of table cells)
-     * ///
-     *
-     * === UI & Interaction ===
-     */
-    formatClosureBlock?: string;
-    /**
-     * - Closes modals when clicking outside.
-     */
-    closeModalOutsideClick?: boolean;
-    /**
-     * - Synchronizes tab indent with spaces.
-     */
-    syncTabIndent?: boolean;
-    /**
-     * - Disables tab key input.
-     */
-    tabDisable?: boolean;
-    /**
-     * - Toolbar width.
-     */
-    toolbar_width?: string;
-    /**
-     * - Container element for the toolbar.
-     */
-    toolbar_container?: HTMLElement | null;
-    /**
-     * - Enables sticky toolbar.
-     * - `number`: Sets the sticky top position (px). Use `-1` to disable sticky.
-     * - `{top, offset}`: `top` is the sticky position when the page header is visible.
-     * - `offset` is the sticky position when a virtual keyboard shifts the viewport (e.g., on tablets, touch devices).
-     * - When the virtual keyboard is active, `offset` replaces `top` so the toolbar doesn't leave a gap
-     * - for a page header that has scrolled out of view. Default `offset` is `0`.
-     * ```js
-     * // Basic usage — sticky at top with 0px offset
-     * toolbar_sticky: 0
-     *
-     * // Account for a 92px fixed/sticky site header
-     * toolbar_sticky: 92
-     *
-     * // 92px header on desktop, but 0px when virtual keyboard pushes the viewport
-     * toolbar_sticky: { top: 92, offset: 0 }
-     * ```
-     */
-    toolbar_sticky?: number | {
-        top: number;
-        offset: number;
-    };
-    /**
-     * - Hides toolbar initially.
-     */
-    toolbar_hide?: boolean;
-    /**
-     * - Sub-toolbar configuration. A secondary toolbar that appears on text selection.
-     */
-    subToolbar?: {
-        buttonList?: SunEditor.UI.ButtonList;
-        mode?: "balloon" | "balloon-always";
-        width?: string;
-    };
-    /**
-     * - Container element for the status bar.
-     */
-    statusbar_container?: HTMLElement | null;
-    /**
-     * - Displays shortcut hints in tooltips.
-     */
-    shortcutsHint?: boolean;
-    /**
-     * - Disables keyboard shortcuts.
-     */
-    shortcutsDisable?: boolean;
-    /**
-     * - Custom keyboard shortcuts.
-     * - Keys starting with `_` are user-defined custom shortcuts. Each value is an array of `[keyCombo, hintLabel]` pairs.
-     * - Key combos use `c` (Ctrl/Cmd), `s` (Shift), and `KeyEvent.code` values joined by `+`.
-     * - Use `$~pluginName.method` to call a specific plugin method.
-     * ```js
-     * {
-     * shortcuts: {
-     * bold: ['c+KeyB', 'B'],
-     * _h1: ['c+s+Digit1+$~blockStyle.applyHeaderByShortcut', '']
-     * }
-     * }
-     * ```
-     * ///
-     *
-     * === Advanced Features ===
-     */
-    shortcuts?: {
-        [key: string]: Array<string> | undefined;
-    };
-    /**
-     * - Keeps the format of the copied content.
-     */
-    copyFormatKeepOn?: boolean;
-    /**
-     * - Automatically converts URLs into hyperlinks. (`Link` plugin required)
-     * - Default: `Boolean(plugins.link)` — determined by whether the `link` plugin is enabled.
-     */
-    autoLinkify?: boolean;
-    /**
-     * - Styles applied automatically on text input.
-     */
-    autoStyleify?: Array<string>;
-    /**
-     * - Delay time for history stack updates (ms).
-     */
-    historyStackDelayTime?: number;
-    /**
-     * - Maximum number of history entries per root frame. Oldest entries are discarded when exceeded.
-     */
-    historyStackSize?: number;
-    /**
-     * - Class name for printing.
-     */
-    printClass?: string;
-    /**
-     * - Offset applied when entering fullscreen mode.
-     */
-    fullScreenOffset?: number;
-    /**
-     * - Custom HTML template for preview mode. Use `{{ contents }}` as a placeholder for editor content.
-     */
-    previewTemplate?: string | null;
-    /**
-     * - Custom HTML template for print mode. Use `{{ contents }}` as a placeholder for editor content.
-     * ```js
-     * { previewTemplate: '<div class="my-preview"><h1>Preview</h1>{{ contents }}</div>' }
-     * ```
-     */
-    printTemplate?: string | null;
-    /**
-     * - Enables automatic selection of inserted components.
-     * - For inline components: places cursor near the component, or selects if no nearby range.
-     * - For block components: executes behavior based on `selectMode`:
-     * - `auto`: Move cursor to the next line if possible, otherwise select the component.
-     * - `select`: Always select the inserted component.
-     * - `line`: Move cursor to the next line if possible, or create a new line and move there.
-     * - `none`: Do nothing.
-     */
-    componentInsertBehavior?: SunEditor.ComponentInsertType;
-    /**
-     * - Default URL protocol for links.
-     */
-    defaultUrlProtocol?: string | null;
-    /**
-     * - Duration for displaying toast messages (ms).
-     */
-    toastMessageTime?: any;
-    /**
-     * - Enables free code view mode.
-     */
-    freeCodeViewMode?: boolean;
-    /**
-     * - Shows the built-in Find/Replace panel UI.
-     * - The finder is always created internally; this option controls whether the panel is visible to users (Ctrl+F / Ctrl+H).
-     */
-    finder_panel?: boolean;
-    /**
-     * - Searches instantly as you type (debounced). When false, search runs only on Enter.
-     *
-     * ///
-     *
-     * === Dynamic Options ===
-     */
-    finder_liveSearch?: boolean;
-    /**
-     * - External libraries like CodeMirror, KaTeX, or MathJax.
-     * - See {@link https://github.com/ARA-developer/suneditor/blob/develop/guide/external-libraries.md External Libraries Guide}```js
-     * {
-     * externalLibs: {
-     * katex: window.katex,
-     * codeMirror: { src: CodeMirror }
-     * }
-     * }
-     * ```
-     */
-    externalLibs?: {
-        [x: string]: any;
-    };
-    /**
-     * - Specifies extra allowed or disallowed tags. `true` to allow, `false` to disallow.
-     * - The default follows {@link DEFAULTS.EXTRA_TAG_MAP}```js
-     * {
-     * allowedExtraTags: {
-     * script: false,
-     * style: false,
-     * mark: true
-     * }
-     * }
-     * ```
-     * ///
-     *
-     * === User Events ===
-     */
-    allowedExtraTags?: {
-        [x: string]: boolean;
-    };
-    /**
-     * - User event handlers configuration.
-     * ```js
-     * {
-     * events: {
-     * onChange: (content) => console.log(content),
-     * onImageUploadBefore: (files, info) => true
-     * }
-     * }
-     * ```
-     * ///
-     *
-     * === [ Plugin-Specific Options ] ===
-     * ---[ Auto-generated by scripts/check/inject-plugin-jsdoc.cjs - DO NOT EDIT MANUALLY ]---
-     */
-    events?: SunEditor.Event.Handlers;
-    align?: import("../../plugins/dropdown/align.js").AlignPluginOptions;
-    audio?: import("../../plugins/modal/audio.js").AudioPluginOptions;
-    audioGallery?: import("../../plugins/browser/audioGallery.js").AudioGalleryPluginOptions;
-    autocomplete?: import("../../plugins/field/autocomplete.js").AutocompletePluginOptions;
-    backgroundColor?: import("../../plugins/dropdown/backgroundColor.js").BackgroundColorPluginOptions;
-    blockStyle?: import("../../plugins/dropdown/blockStyle.js").BlockStylePluginOptions;
-    codeBlock?: import("../../plugins/command/codeBlock.js").CodeBlockPluginOptions;
-    drawing?: import("../../plugins/modal/drawing.js").DrawingPluginOptions;
-    embed?: import("../../plugins/modal/embed.js").EmbedPluginOptions;
-    exportPDF?: import("../../plugins/command/exportPDF.js").ExportPDFPluginOptions;
-    fileBrowser?: import("../../plugins/browser/fileBrowser.js").FileBrowserPluginOptions;
-    fileGallery?: import("../../plugins/browser/fileGallery.js").FileGalleryPluginOptions;
-    fileUpload?: import("../../plugins/command/fileUpload.js").FileUploadPluginOptions;
-    font?: import("../../plugins/dropdown/font.js").FontPluginOptions;
-    fontColor?: import("../../plugins/dropdown/fontColor.js").FontColorPluginOptions;
-    fontSize?: import("../../plugins/input/fontSize.js").FontSizePluginOptions;
-    hr?: import("../../plugins/dropdown/hr.js").HRPluginOptions;
-    image?: import("../../plugins/modal/image/index.js").ImagePluginOptions;
-    imageGallery?: import("../../plugins/browser/imageGallery.js").ImageGalleryPluginOptions;
-    layout?: import("../../plugins/dropdown/layout.js").LayoutPluginOptions;
-    lineHeight?: import("../../plugins/dropdown/lineHeight.js").LineHeightPluginOptions;
-    link?: import("../../plugins/modal/link.js").LinkPluginOptions;
-    math?: import("../../plugins/modal/math.js").MathPluginOptions;
-    paragraphStyle?: import("../../plugins/dropdown/paragraphStyle.js").ParagraphStylePluginOptions;
-    table?: import("../../plugins/dropdown/table/index.js").TablePluginOptions;
-    template?: import("../../plugins/dropdown/template.js").TemplatePluginOptions;
-    textStyle?: import("../../plugins/dropdown/textStyle.js").TextStylePluginOptions;
-    video?: import("../../plugins/modal/video/index.js").VideoPluginOptions;
-    /**
-     * ///
-     * ---[ End of auto-generated plugin options ]---
-     * ================================================================================================================================
-     */
-    videoGallery?: import("../../plugins/browser/videoGallery.js").VideoGalleryPluginOptions;
+	/**
+	 * - Plugin configuration. Pass an array of plugin classes or an object keyed by plugin name.
+	 * ```js
+	 * import plugins, { image, link, table } from 'suneditor/src/plugins';
+	 * { plugins: plugins,
+	 * plugins: [image, link, table],
+	 * plugins: { image, link, table }
+	 * }
+	 * ```
+	 */
+	plugins?:
+		| {
+				[x: string]: any;
+		  }
+		| Array<{
+				[x: string]: any;
+		  }>;
+	/**
+	 * - List of plugin names to exclude.
+	 * ```js
+	 * { excludedPlugins: ['image', 'video'] }
+	 * ```
+	 */
+	excludedPlugins?: Array<string>;
+	/**
+	 * - List of toolbar buttons, grouped by sub-arrays.
+	 * - The default follows {@link DEFAULTS.BUTTON_LIST}///
+	 *
+	 * === Modes & Themes ===
+	 */
+	buttonList?: SunEditor.UI.ButtonList;
+	/**
+	 * - Enables migration mode for SunEditor v2.
+	 */
+	v2Migration?: boolean;
+	/**
+	 * - Toolbar mode: `classic`, `inline`, `balloon`, `balloon-always`. Append `:bottom` to place toolbar at the bottom (e.g. `classic:bottom`, `inline:bottom`).
+	 */
+	mode?: 'classic' | 'inline' | 'balloon' | 'balloon-always' | 'classic:bottom' | 'inline:bottom';
+	/**
+	 * - Editor type. Use `"document"` for a document-style layout, with optional sub-types after `:`.
+	 * ```js
+	 * // type
+	 * 'document:header,page'
+	 * ```
+	 */
+	type?: string;
+	/**
+	 * - Editor theme.
+	 */
+	theme?: string;
+	/**
+	 * - Language configuration. default : EN
+	 */
+	lang?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Overrides the default icons.
+	 */
+	icons?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Text direction: `ltr` or `rtl`.
+	 */
+	textDirection?: 'ltr' | 'rtl';
+	/**
+	 * - Explicit ShadowRoot to use for selection tracking in Shadow DOM integrations.
+	 */
+	shadowRoot?: ShadowRoot;
+	/**
+	 * - An array of command pairs whose shortcut icons should be opposite each other.
+	 * - Depends on the `textDirection` mode.
+	 * ///
+	 *
+	 * === Strict & Advanced Filtering ===
+	 */
+	reverseButtons?: Array<string>;
+	/**
+	 * - Enables strict filtering of tags, attributes, and styles.
+	 * - Use `true` to enable all filters (default), or an object to control individual filters.
+	 * - Setting `false` is not supported; use the object form to disable specific filters instead.
+	 * - :filter description
+	 * - `tagFilter`: Filters disallowed HTML tags (`elementWhitelist`/`elementBlacklist`)
+	 * - `formatFilter`: Filters format elements (`formatLine`/`formatBlock`)
+	 * - `classFilter`: Filters disallowed CSS class names (`allowedClassName`)
+	 * - `textStyleTagFilter`: Filters text style tags (b, i, u, span, etc.)
+	 * - `attrFilter`: Filters disallowed HTML attributes (`attributeWhitelist`/`attributeBlacklist`)
+	 * - `styleFilter`: Filters disallowed inline styles (`spanStyles`/`lineStyles`/`allUsedStyles`)
+	 * ```js
+	 * // disable only attribute and style filters
+	 * {
+	 * strictMode: {
+	 * tagFilter: true,
+	 * formatFilter: true,
+	 * classFilter: true,
+	 * textStyleTagFilter: true,
+	 * attrFilter: false,
+	 * styleFilter: false
+	 * }
+	 * }
+	 * ```
+	 */
+	strictMode?:
+		| true
+		| {
+				tagFilter: boolean;
+				formatFilter: boolean;
+				classFilter: boolean;
+				textStyleTagFilter: boolean;
+				attrFilter: boolean;
+				styleFilter: boolean;
+		  };
+	/**
+	 * - Tags treated as whole units when selecting all content.
+	 * - The default follows {@link DEFAULTS.SCOPE_SELECTION_TAGS}///
+	 *
+	 * === Content Filtering & Formatting ===
+	 * ==
+	 * #### 1) Tag & Element Control
+	 */
+	scopeSelectionTags?: Array<string>;
+	/**
+	 * - Specifies HTML elements to additionally allow beyond the default allow list. Delimiter: `"|"`.
+	 * - Added to the default list determined by {@link PrivateBaseOptions.__defaultElementWhitelist}.
+	 * ```js
+	 * { elementWhitelist: 'mark|details|summary' }
+	 * ```
+	 */
+	elementWhitelist?: string;
+	/**
+	 * - Specifies HTML elements that should not be used. Delimiter: `"|"`.
+	 * - Tags specified here will eventually be removed, even if they are included in other whitelists.
+	 * ```js
+	 * { elementBlacklist: 'script|style|iframe' }
+	 * ```
+	 */
+	elementBlacklist?: string;
+	/**
+	 * - A list of tags that are allowed to be kept even if their values are empty.
+	 * - The default follows {@link DEFAULTS.ALLOWED_EMPTY_NODE_LIST}- Concatenated with `ALLOWED_EMPTY_NODE_LIST` to form the final `allowedEmptyTags` list.
+	 */
+	allowedEmptyTags?: string;
+	/**
+	 * - Allowed class names.
+	 * - Added the default value {@link DEFAULTS.CLASS_NAME}///
+	 *
+	 * #### 2) Attribute Control
+	 */
+	allowedClassName?: string;
+	/**
+	 * - Specifies additional attributes to allow for each tag. `"*"` applies to all tags.
+	 * - Rules specified here will be merged into {@link PrivateBaseOptions.__defaultAttributeWhitelist}.
+	 * ```js
+	 * {
+	 * attributeWhitelist: {
+	 * a: 'href|target',
+	 * img: 'src|alt',
+	 * '*': 'id|data-*'
+	 * }
+	 * }
+	 * ```
+	 */
+	attributeWhitelist?: {
+		[key: string]: string | undefined;
+	};
+	/**
+	 * - Specifies attributes to disallow by tag. `"*"` applies to all tags.
+	 * - Attributes specified here will eventually be removed even if they are allowed by other settings.
+	 * - A list of required elements, {@link DEFAULTS.REQUIRED_FORMAT_LINE}, is always included.
+	 * ```js
+	 * { attributeBlacklist: { '*': 'onclick|onerror' } }
+	 * ```
+	 * ///
+	 *
+	 * #### 3) Text & Inline Style Control
+	 */
+	attributeBlacklist?: {
+		[key: string]: string | undefined;
+	};
+	/**
+	 * - Additional text style tags.
+	 * - The default follows {@link PrivateBaseOptions.__textStyleTags}
+	 */
+	textStyleTags?: string;
+	/**
+	 * - Maps text styles to specific HTML tags.
+	 * ```js
+	 * {
+	 * convertTextTags: {
+	 * bold: 'b',
+	 * italic: 'i',
+	 * underline: 'u',
+	 * strike: 's'
+	 * }
+	 * }
+	 * ```
+	 */
+	convertTextTags?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Specifies additional styles to the list of allowed styles. Delimiter: `"|"`.
+	 * ```js
+	 * { allUsedStyles: 'color|background-color|text-shadow' }
+	 * ```
+	 */
+	allUsedStyles?: string;
+	/**
+	 * - Specifies allowed styles for HTML tags. Key is tag name(s), value is pipe-delimited allowed styles.
+	 * ```js
+	 * {
+	 * tagStyles: {
+	 * 'table|td': 'border|color|background-color',
+	 * hr: 'border-top'
+	 * }
+	 * }
+	 * ```
+	 */
+	tagStyles?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Specifies allowed styles for the `span` tag.
+	 * - The default follows {@link DEFAULTS.SPAN_STYLES}
+	 */
+	spanStyles?: string;
+	/**
+	 * - Specifies allowed styles for the `line` element (p..).
+	 * - The default follows {@link DEFAULTS.LINE_STYLES}
+	 */
+	lineStyles?: string;
+	/**
+	 * - Allowed font size units.
+	 * - The default follows {@link DEFAULTS.SIZE_UNITS}
+	 */
+	fontSizeUnits?: Array<string>;
+	/**
+	 * - Determines how inline elements (e.g. `<span>`, `<strong>`) are handled when deleting text.
+	 * - `repeat`: Styles are retained unless backspace is repeatedly pressed.
+	 * - Continuous pressing will eventually remove the styles.
+	 * - `none`: Styles are not retained. Inline elements are immediately removed with the text.
+	 * - `always`: Styles persist indefinitely unless explicitly removed.
+	 * - Even if all text inside an inline element is deleted, the element itself remains.
+	 * ///
+	 *
+	 * #### 4) Line & Block Formatting
+	 */
+	retainStyleMode?: 'repeat' | 'always' | 'none';
+	/**
+	 * - Default `line` element when inserting new lines.
+	 */
+	defaultLine?: string;
+	/**
+	 * - Specifies the default line break format.
+	 * - [Recommended] `line` : Line break is divided into general tags.
+	 * - [Not recommended] `br` : Line breaks are treated as <br> on the same line. (like shift+enter)
+	 * - Line breaks are handled as <br> within `line`.
+	 * - You can create a new `line` by entering a line break twice in a row.
+	 * - Formats that include `line`, such as "Quote", still operate on a `line` basis.
+	 * - suneditor processes work in `line` units.
+	 * - When set to `br`, performance may decrease when editing a lot of data.
+	 */
+	defaultLineBreakFormat?: 'line' | 'br';
+	/**
+	 * - Line properties that should be reset when changing lines. Delimiter: `"|"`.
+	 * ```js
+	 * { lineAttrReset: 'id|name' }
+	 * ```
+	 */
+	lineAttrReset?: string;
+	/**
+	 * - Additionally allowed `line` elements beyond the default. Delimiter: `"|"`.
+	 * - Concatenated with {@link PrivateBaseOptions.__defaultFormatLine} to form the final `line` list.
+	 * - `line` element also contains `brLine` element.
+	 * ```js
+	 * { formatLine: 'ARTICLE|SECTION' }
+	 * ```
+	 */
+	formatLine?: string;
+	/**
+	 * - Additionally allowed `brLine` elements beyond the default.
+	 * - Concatenated with {@link PrivateBaseOptions.__defaultFormatBrLine} to form the final `brLine` list.
+	 * - `brLine` elements are included in the `line` element.
+	 * - `brLine` elements' line break is `BR` tag.
+	 * ```js
+	 * { formatBrLine: 'CODE' }
+	 * ```
+	 * - ※ Entering the Enter key on the last line ends `brLine` and appends `line`.
+	 */
+	formatBrLine?: string;
+	/**
+	 * - Additionally allowed `closureBrLine` elements beyond the default.
+	 * - Concatenated with {@link PrivateBaseOptions.__defaultFormatClosureBrLine} for the final `closureBrLine` list.
+	 * - `closureBrLine` elements are included in the `brLine`.
+	 * - `closureBrLine` elements' line break is `BR` tag.
+	 * - ※ You cannot exit this format with the Enter key or Backspace key.
+	 * - ※ Use it only in special cases. ([ex] format of table cells)
+	 */
+	formatClosureBrLine?: string;
+	/**
+	 * - Additionally allowed `block` elements beyond the default.
+	 * - Concatenated with {@link PrivateBaseOptions.__defaultFormatBlock} to form the final `block` list.
+	 * - `block` wraps the `line` and `component`.
+	 */
+	formatBlock?: string;
+	/**
+	 * - Additionally allowed `closureBlock` elements beyond the default.
+	 * - Concatenated with {@link PrivateBaseOptions.__defaultFormatClosureBlock} for the final `closureBlock` list.
+	 * - `closureBlock` elements are included in the `block`.
+	 * - `closureBlock` element wraps the `line` and `component`.
+	 * - ※ You cannot exit this format with the Enter key or Backspace key.
+	 * - ※ Use it only in special cases. (e.g. format of table cells)
+	 * ///
+	 *
+	 * === UI & Interaction ===
+	 */
+	formatClosureBlock?: string;
+	/**
+	 * - Closes modals when clicking outside.
+	 */
+	closeModalOutsideClick?: boolean;
+	/**
+	 * - Synchronizes tab indent with spaces.
+	 */
+	syncTabIndent?: boolean;
+	/**
+	 * - Disables tab key input.
+	 */
+	tabDisable?: boolean;
+	/**
+	 * - Toolbar width.
+	 */
+	toolbar_width?: string;
+	/**
+	 * - Container element for the toolbar.
+	 */
+	toolbar_container?: HTMLElement | null;
+	/**
+	 * - Enables sticky toolbar.
+	 * - `number`: Sets the sticky top position (px). Use `-1` to disable sticky.
+	 * - `{top, offset}`: `top` is the sticky position when the page header is visible.
+	 * - `offset` is the sticky position when a virtual keyboard shifts the viewport (e.g., on tablets, touch devices).
+	 * - When the virtual keyboard is active, `offset` replaces `top` so the toolbar doesn't leave a gap
+	 * - for a page header that has scrolled out of view. Default `offset` is `0`.
+	 * ```js
+	 * // Basic usage — sticky at top with 0px offset
+	 * toolbar_sticky: 0
+	 *
+	 * // Account for a 92px fixed/sticky site header
+	 * toolbar_sticky: 92
+	 *
+	 * // 92px header on desktop, but 0px when virtual keyboard pushes the viewport
+	 * toolbar_sticky: { top: 92, offset: 0 }
+	 * ```
+	 */
+	toolbar_sticky?:
+		| number
+		| {
+				top: number;
+				offset: number;
+		  };
+	/**
+	 * - Hides toolbar initially.
+	 */
+	toolbar_hide?: boolean;
+	/**
+	 * - Sub-toolbar configuration. A secondary toolbar that appears on text selection.
+	 */
+	subToolbar?: {
+		buttonList?: SunEditor.UI.ButtonList;
+		mode?: 'balloon' | 'balloon-always';
+		width?: string;
+	};
+	/**
+	 * - Container element for the status bar.
+	 */
+	statusbar_container?: HTMLElement | null;
+	/**
+	 * - Displays shortcut hints in tooltips.
+	 */
+	shortcutsHint?: boolean;
+	/**
+	 * - Disables keyboard shortcuts.
+	 */
+	shortcutsDisable?: boolean;
+	/**
+	 * - Custom keyboard shortcuts.
+	 * - Keys starting with `_` are user-defined custom shortcuts. Each value is an array of `[keyCombo, hintLabel]` pairs.
+	 * - Key combos use `c` (Ctrl/Cmd), `s` (Shift), and `KeyEvent.code` values joined by `+`.
+	 * - Use `$~pluginName.method` to call a specific plugin method.
+	 * ```js
+	 * {
+	 * shortcuts: {
+	 * bold: ['c+KeyB', 'B'],
+	 * _h1: ['c+s+Digit1+$~blockStyle.applyHeaderByShortcut', '']
+	 * }
+	 * }
+	 * ```
+	 * ///
+	 *
+	 * === Advanced Features ===
+	 */
+	shortcuts?: {
+		[key: string]: Array<string> | undefined;
+	};
+	/**
+	 * - Keeps the format of the copied content.
+	 */
+	copyFormatKeepOn?: boolean;
+	/**
+	 * - Automatically converts URLs into hyperlinks. (`Link` plugin required)
+	 * - Default: `Boolean(plugins.link)` — determined by whether the `link` plugin is enabled.
+	 */
+	autoLinkify?: boolean;
+	/**
+	 * - Styles applied automatically on text input.
+	 */
+	autoStyleify?: Array<string>;
+	/**
+	 * - Delay time for history stack updates (ms).
+	 */
+	historyStackDelayTime?: number;
+	/**
+	 * - Maximum number of history entries per root frame. Oldest entries are discarded when exceeded.
+	 */
+	historyStackSize?: number;
+	/**
+	 * - Class name for printing.
+	 */
+	printClass?: string;
+	/**
+	 * - Offset applied when entering fullscreen mode.
+	 */
+	fullScreenOffset?: number;
+	/**
+	 * - Custom HTML template for preview mode. Use `{{ contents }}` as a placeholder for editor content.
+	 */
+	previewTemplate?: string | null;
+	/**
+	 * - Custom HTML template for print mode. Use `{{ contents }}` as a placeholder for editor content.
+	 * ```js
+	 * { previewTemplate: '<div class="my-preview"><h1>Preview</h1>{{ contents }}</div>' }
+	 * ```
+	 */
+	printTemplate?: string | null;
+	/**
+	 * - Enables automatic selection of inserted components.
+	 * - For inline components: places cursor near the component, or selects if no nearby range.
+	 * - For block components: executes behavior based on `selectMode`:
+	 * - `auto`: Move cursor to the next line if possible, otherwise select the component.
+	 * - `select`: Always select the inserted component.
+	 * - `line`: Move cursor to the next line if possible, or create a new line and move there.
+	 * - `none`: Do nothing.
+	 */
+	componentInsertBehavior?: SunEditor.ComponentInsertType;
+	/**
+	 * - Default URL protocol for links.
+	 */
+	defaultUrlProtocol?: string | null;
+	/**
+	 * - Duration for displaying toast messages (ms).
+	 */
+	toastMessageTime?: any;
+	/**
+	 * - Enables free code view mode.
+	 */
+	freeCodeViewMode?: boolean;
+	/**
+	 * - Shows the built-in Find/Replace panel UI.
+	 * - The finder is always created internally; this option controls whether the panel is visible to users (Ctrl+F / Ctrl+H).
+	 */
+	finder_panel?: boolean;
+	/**
+	 * - Searches instantly as you type (debounced). When false, search runs only on Enter.
+	 *
+	 * ///
+	 *
+	 * === Dynamic Options ===
+	 */
+	finder_liveSearch?: boolean;
+	/**
+	 * - External libraries like CodeMirror, KaTeX, or MathJax.
+	 * - See {@link https://github.com/ARA-developer/suneditor/blob/develop/guide/external-libraries.md External Libraries Guide}```js
+	 * {
+	 * externalLibs: {
+	 * katex: window.katex,
+	 * codeMirror: { src: CodeMirror }
+	 * }
+	 * }
+	 * ```
+	 */
+	externalLibs?: {
+		[x: string]: any;
+	};
+	/**
+	 * - Specifies extra allowed or disallowed tags. `true` to allow, `false` to disallow.
+	 * - The default follows {@link DEFAULTS.EXTRA_TAG_MAP}```js
+	 * {
+	 * allowedExtraTags: {
+	 * script: false,
+	 * style: false,
+	 * mark: true
+	 * }
+	 * }
+	 * ```
+	 * ///
+	 *
+	 * === User Events ===
+	 */
+	allowedExtraTags?: {
+		[x: string]: boolean;
+	};
+	/**
+	 * - User event handlers configuration.
+	 * ```js
+	 * {
+	 * events: {
+	 * onChange: (content) => console.log(content),
+	 * onImageUploadBefore: (files, info) => true
+	 * }
+	 * }
+	 * ```
+	 * ///
+	 *
+	 * === [ Plugin-Specific Options ] ===
+	 * ---[ Auto-generated by scripts/check/inject-plugin-jsdoc.cjs - DO NOT EDIT MANUALLY ]---
+	 */
+	events?: SunEditor.Event.Handlers;
+	align?: import('../../plugins/dropdown/align.js').AlignPluginOptions;
+	audio?: import('../../plugins/modal/audio.js').AudioPluginOptions;
+	audioGallery?: import('../../plugins/browser/audioGallery.js').AudioGalleryPluginOptions;
+	autocomplete?: import('../../plugins/field/autocomplete.js').AutocompletePluginOptions;
+	backgroundColor?: import('../../plugins/dropdown/backgroundColor.js').BackgroundColorPluginOptions;
+	blockStyle?: import('../../plugins/dropdown/blockStyle.js').BlockStylePluginOptions;
+	codeBlock?: import('../../plugins/command/codeBlock.js').CodeBlockPluginOptions;
+	drawing?: import('../../plugins/modal/drawing.js').DrawingPluginOptions;
+	embed?: import('../../plugins/modal/embed.js').EmbedPluginOptions;
+	exportPDF?: import('../../plugins/command/exportPDF.js').ExportPDFPluginOptions;
+	fileBrowser?: import('../../plugins/browser/fileBrowser.js').FileBrowserPluginOptions;
+	fileGallery?: import('../../plugins/browser/fileGallery.js').FileGalleryPluginOptions;
+	fileUpload?: import('../../plugins/command/fileUpload.js').FileUploadPluginOptions;
+	font?: import('../../plugins/dropdown/font.js').FontPluginOptions;
+	fontColor?: import('../../plugins/dropdown/fontColor.js').FontColorPluginOptions;
+	fontSize?: import('../../plugins/input/fontSize.js').FontSizePluginOptions;
+	hr?: import('../../plugins/dropdown/hr.js').HRPluginOptions;
+	image?: import('../../plugins/modal/image/index.js').ImagePluginOptions;
+	imageGallery?: import('../../plugins/browser/imageGallery.js').ImageGalleryPluginOptions;
+	layout?: import('../../plugins/dropdown/layout.js').LayoutPluginOptions;
+	lineHeight?: import('../../plugins/dropdown/lineHeight.js').LineHeightPluginOptions;
+	link?: import('../../plugins/modal/link.js').LinkPluginOptions;
+	math?: import('../../plugins/modal/math.js').MathPluginOptions;
+	paragraphStyle?: import('../../plugins/dropdown/paragraphStyle.js').ParagraphStylePluginOptions;
+	table?: import('../../plugins/dropdown/table/index.js').TablePluginOptions;
+	template?: import('../../plugins/dropdown/template.js').TemplatePluginOptions;
+	textStyle?: import('../../plugins/dropdown/textStyle.js').TextStylePluginOptions;
+	video?: import('../../plugins/modal/video/index.js').VideoPluginOptions;
+	/**
+	 * ///
+	 * ---[ End of auto-generated plugin options ]---
+	 * ================================================================================================================================
+	 */
+	videoGallery?: import('../../plugins/browser/videoGallery.js').VideoGalleryPluginOptions;
 };
 /**
  * **Runtime-only base options (computed internally, cannot be set by users)**
  */
 export type InternalBaseOptions = {
-    /**
-     * - Computed className for the selected theme (e.g., `se-theme-default`).
-     */
-    _themeClass?: string;
-    /**
-     * - Additional sub-type string from the `type` option (after `:`).
-     */
-    _type_options?: string;
-    /**
-     * - Preprocessed allowed tag string for RegExp (e.g., "mark|figure").
-     */
-    _allowedExtraTag?: string;
-    /**
-     * - Preprocessed disallowed tag string.
-     */
-    _disallowedExtraTag?: string;
-    /**
-     * - Final computed editable class (used in editor wrapper).
-     */
-    _editableClass?: string;
-    /**
-     * - Whether text direction is RTL.
-     */
-    _rtl?: boolean;
-    /**
-     * - Internal key shortcut matcher for reverse commands.
-     */
-    _reverseCommandArray?: string[];
-    /**
-     * - Sub toolbar mode (e.g., `balloon`).
-     */
-    _subMode?: string;
-    /**
-     * - Tag names used for text styling, plus span/li.
-     */
-    _textStyleTags?: string[];
-    /**
-     * - Regex to match inline styles (e.g., fontSize, color).
-     */
-    _textStylesRegExp?: RegExp;
-    /**
-     * - Regex to match line styles (e.g., text-align, padding).
-     */
-    _lineStylesRegExp?: RegExp;
-    /**
-     * - Mapping HTML tag => standard tag.
-     */
-    _defaultStyleTagMap?: {
-        [x: string]: string;
-    };
-    /**
-     * - Mapping HTML tag => command (e.g., bold, underline).
-     */
-    _styleCommandMap?: {
-        [x: string]: string;
-    };
-    /**
-     * - Mapping command => preferred tag.
-     */
-    _defaultTagCommand?: {
-        [x: string]: string;
-    };
-    /**
-     * - Element whitelist regex pattern for the editor.
-     */
-    _editorElementWhitelist?: string;
-    /**
-     * - List of currently used toolbar buttons
-     */
-    buttons?: Set<any>;
-    /**
-     * - List of currently used sub-toolbar buttons
-     */
-    buttons_sub?: Set<any>;
-    /**
-     * - Sub-toolbar width.
-     */
-    toolbar_sub_width?: string;
-    /**
-     * - Merged reverse command pairs array.
-     * - Includes default `indent-outdent` + user's `reverseButtons`.
-     */
-    reverseCommands?: string[];
-    /**
-     * - CodeMirror configuration object from `externalLibs.codeMirror`.
-     */
-    codeMirror?: any;
-    /**
-     * - Whether CodeMirror is available (base-level flag). Frame-level stores the actual CM instance.
-     */
-    codeMirrorEditor?: boolean;
-    /**
-     * - Uses CodeMirror for code view.
-     */
-    hasCodeMirror?: boolean;
-    /**
-     * - Processed set of all allowed CSS styles.
-     * - Converted from user's `string` input ("|" delimited) to `Set<string>` in constructor.
-     */
-    allUsedStyles?: Set<string>;
+	/**
+	 * - Computed className for the selected theme (e.g., `se-theme-default`).
+	 */
+	_themeClass?: string;
+	/**
+	 * - Additional sub-type string from the `type` option (after `:`).
+	 */
+	_type_options?: string;
+	/**
+	 * - Preprocessed allowed tag string for RegExp (e.g., "mark|figure").
+	 */
+	_allowedExtraTag?: string;
+	/**
+	 * - Preprocessed disallowed tag string.
+	 */
+	_disallowedExtraTag?: string;
+	/**
+	 * - Final computed editable class (used in editor wrapper).
+	 */
+	_editableClass?: string;
+	/**
+	 * - Whether text direction is RTL.
+	 */
+	_rtl?: boolean;
+	/**
+	 * - Internal key shortcut matcher for reverse commands.
+	 */
+	_reverseCommandArray?: string[];
+	/**
+	 * - Sub toolbar mode (e.g., `balloon`).
+	 */
+	_subMode?: string;
+	/**
+	 * - Tag names used for text styling, plus span/li.
+	 */
+	_textStyleTags?: string[];
+	/**
+	 * - Regex to match inline styles (e.g., fontSize, color).
+	 */
+	_textStylesRegExp?: RegExp;
+	/**
+	 * - Regex to match line styles (e.g., text-align, padding).
+	 */
+	_lineStylesRegExp?: RegExp;
+	/**
+	 * - Mapping HTML tag => standard tag.
+	 */
+	_defaultStyleTagMap?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Mapping HTML tag => command (e.g., bold, underline).
+	 */
+	_styleCommandMap?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Mapping command => preferred tag.
+	 */
+	_defaultTagCommand?: {
+		[x: string]: string;
+	};
+	/**
+	 * - Element whitelist regex pattern for the editor.
+	 */
+	_editorElementWhitelist?: string;
+	/**
+	 * - List of currently used toolbar buttons
+	 */
+	buttons?: Set<any>;
+	/**
+	 * - List of currently used sub-toolbar buttons
+	 */
+	buttons_sub?: Set<any>;
+	/**
+	 * - Sub-toolbar width.
+	 */
+	toolbar_sub_width?: string;
+	/**
+	 * - Merged reverse command pairs array.
+	 * - Includes default `indent-outdent` + user's `reverseButtons`.
+	 */
+	reverseCommands?: string[];
+	/**
+	 * - CodeMirror configuration object from `externalLibs.codeMirror`.
+	 */
+	codeMirror?: any;
+	/**
+	 * - Whether CodeMirror is available (base-level flag). Frame-level stores the actual CM instance.
+	 */
+	codeMirrorEditor?: boolean;
+	/**
+	 * - Uses CodeMirror for code view.
+	 */
+	hasCodeMirror?: boolean;
+	/**
+	 * - Processed set of all allowed CSS styles.
+	 * - Converted from user's `string` input ("|" delimited) to `Set<string>` in constructor.
+	 */
+	allUsedStyles?: Set<string>;
 };
 export type EditorInitOptions = EditorBaseOptions & PrivateBaseOptions & EditorFrameOptions;
 export type AllBaseOptions = EditorBaseOptions & PrivateBaseOptions & InternalBaseOptions;
-export type TransformedOptionKeys = "formatClosureBrLine" | "formatBrLine" | "formatLine" | "formatClosureBlock" | "formatBlock" | "toolbar_width" | "toolbar_container" | "_toolbar_sticky" | "_toolbar_sticky_offset" | "strictMode" | "lineAttrReset";
+export type TransformedOptionKeys =
+	| 'formatClosureBrLine'
+	| 'formatBrLine'
+	| 'formatLine'
+	| 'formatClosureBlock'
+	| 'formatBlock'
+	| 'toolbar_width'
+	| 'toolbar_container'
+	| '_toolbar_sticky'
+	| '_toolbar_sticky_offset'
+	| 'strictMode'
+	| 'lineAttrReset';
 export type StrictModeOptions = {
-    /**
-     * - Filters disallowed HTML tags (`elementWhitelist`/`elementBlacklist`)
-     */
-    tagFilter: boolean;
-    /**
-     * - Filters format elements (`formatLine`/`formatBlock`)
-     */
-    formatFilter: boolean;
-    /**
-     * - Filters disallowed CSS class names (`allowedClassName`)
-     */
-    classFilter: boolean;
-    /**
-     * - Filters text style tags (b, i, u, span, etc.)
-     */
-    textStyleTagFilter: boolean;
-    /**
-     * - Filters disallowed HTML attributes (`attributeWhitelist`/`attributeBlacklist`)
-     */
-    attrFilter: boolean;
-    /**
-     * - Filters disallowed inline styles (`spanStyles`/`lineStyles`/`allUsedStyles`)
-     */
-    styleFilter: boolean;
+	/**
+	 * - Filters disallowed HTML tags (`elementWhitelist`/`elementBlacklist`)
+	 */
+	tagFilter: boolean;
+	/**
+	 * - Filters format elements (`formatLine`/`formatBlock`)
+	 */
+	formatFilter: boolean;
+	/**
+	 * - Filters disallowed CSS class names (`allowedClassName`)
+	 */
+	classFilter: boolean;
+	/**
+	 * - Filters text style tags (b, i, u, span, etc.)
+	 */
+	textStyleTagFilter: boolean;
+	/**
+	 * - Filters disallowed HTML attributes (`attributeWhitelist`/`attributeBlacklist`)
+	 */
+	attrFilter: boolean;
+	/**
+	 * - Filters disallowed inline styles (`spanStyles`/`lineStyles`/`allUsedStyles`)
+	 */
+	styleFilter: boolean;
 };
 export type TransformedOptions = {
-    formatClosureBrLine: {
-        reg: RegExp;
-        str: string;
-    };
-    formatBrLine: {
-        reg: RegExp;
-        str: string;
-    };
-    formatLine: {
-        reg: RegExp;
-        str: string;
-    };
-    formatClosureBlock: {
-        reg: RegExp;
-        str: string;
-    };
-    formatBlock: {
-        reg: RegExp;
-        str: string;
-    };
-    toolbar_width: string;
-    toolbar_container: HTMLElement | null;
-    _toolbar_sticky: number;
-    _toolbar_sticky_offset: number;
-    strictMode: StrictModeOptions;
-    lineAttrReset: string[];
+	formatClosureBrLine: {
+		reg: RegExp;
+		str: string;
+	};
+	formatBrLine: {
+		reg: RegExp;
+		str: string;
+	};
+	formatLine: {
+		reg: RegExp;
+		str: string;
+	};
+	formatClosureBlock: {
+		reg: RegExp;
+		str: string;
+	};
+	formatBlock: {
+		reg: RegExp;
+		str: string;
+	};
+	toolbar_width: string;
+	toolbar_container: HTMLElement | null;
+	_toolbar_sticky: number;
+	_toolbar_sticky_offset: number;
+	strictMode: StrictModeOptions;
+	lineAttrReset: string[];
 };
 export type ProcessedBaseOptions = Omit<AllBaseOptions, TransformedOptionKeys> & TransformedOptions;

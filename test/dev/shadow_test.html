@@ -3,214 +3,24 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>SunEditor — Shadow DOM vs 일반 (검증 페이지)</title>
+	<title>SunEditor — Shadow DOM 데모</title>
 	<!-- 저장소에서 test/dev/ 깊이로 두 단계 올라가 루트(dist, src)를 가리킵니다. -->
 	<base href="../../" />
 	<link rel="stylesheet" href="dist/suneditor.min.css" />
 	<link rel="stylesheet" href="dist/suneditor-contents.min.css" />
-	<!-- 페이지 기본: 12px / #000 / #fff (Hostile ON 시 !important로 덮어씀) -->
-	<style id="shadow-test-page-base">
-		html {
-			font-size: 12px;
-		}
-		body {
-			margin: 0;
-			padding: 0.5rem;
-			font-size: 12px;
-			color: #000;
-			background-color: #fff;
-		}
-		#hostile-strike-zone {
-			font-size: 12px;
-			color: #000;
-			background-color: #fff;
-		}
-		#hostile-strike-zone h1,
-		#hostile-strike-zone h2,
-		#hostile-strike-zone p {
-			font-size: 12px;
-			color: #000;
-			background-color: #fff;
-		}
-		#hostile-strike-zone h1 {
-			font-weight: 600;
-			margin: 0.5em 0;
-		}
-		#hostile-strike-zone h2 {
-			font-weight: 600;
-			margin: 0.4em 0;
-		}
-		#hostile-strike-zone code {
-			font-size: 12px;
-			color: #000;
-			background-color: #fff;
-		}
-		/* Hostile 영향 밖: 항상 읽기 쉬운 안내 */
-		#shadow-test-notice {
-			box-sizing: border-box;
-			max-width: 56rem;
-			margin: 0 0 10px;
-			padding: 10px 12px;
-			font-size: 12px;
-			line-height: 1.5;
-			color: #000;
-			background: #fff;
-			border: 1px solid #ccc;
-			border-radius: 6px;
-		}
-		#shadow-test-notice strong {
-			color: #000;
-			background: transparent;
-		}
-	</style>
-	<!-- 적대적(외부 페이지) 스타일: Shadow 격리 검증용. #hostile-css 토글로 ON/OFF -->
-	<style id="hostile-css" type="text/css">
-		/* #hostile-strike-zone 안만 망가뜨리고, 우하단 검증 패널은 제외(선택자 스코프) */
-		/* 과장은 유지하되 형광·초대형은 피함(검증은 baseline 대비 여전히 명확) */
-		#hostile-strike-zone,
-		#hostile-strike-zone * ,
-		#hostile-strike-zone *::before,
-		#hostile-strike-zone *::after {
-			font-size: 26px !important;
-			color: #6b2d91 !important;
-			background-color: #e8f4fc !important;
-			font-family: Georgia, "Times New Roman", serif !important;
-			border: 2px solid #c0392b !important;
-			line-height: 2 !important;
-		}
-		/* SunEditor(라이트 DOM): 툴바·버튼을 강제로 숨김 — Shadow 루트 안은 이 선택자에 안 걸림 */
-		.sun-editor,
-		.sun-editor * ,
-		.se-toolbar,
-		.se-toolbar * ,
-		.se-btn,
-		.se-btn * {
-			display: none !important;
-			visibility: hidden !important;
-			opacity: 0 !important;
-		}
-	</style>
 	<style>
-		/* 검증 패널: 기본 타이포 12px / #000 / #fff (hostile 블록 뒤에 두어 우선 적용) */
-		#isolation-test-panel {
-			box-sizing: border-box;
-			font-size: 12px !important;
-			color: #000 !important;
-			background-color: #fff !important;
-		}
-		#isolation-test-panel h3 {
-			margin: 0 0 8px;
-			font-size: 12px !important;
-			color: #000 !important;
-			background-color: #fff !important;
-			border: none !important;
-			line-height: 1.4 !important;
-			font-family: system-ui, sans-serif !important;
-		}
-		#isolation-test-panel table {
-			width: 100%;
-			border-collapse: collapse;
-			font-size: 12px !important;
-			color: #000 !important;
-			background-color: #fff !important;
-		}
-		#isolation-test-panel th, #isolation-test-panel td {
-			border: 1px solid #ccc;
-			padding: 4px 6px;
-			text-align: left;
-			color: #000 !important;
-			background-color: #fff !important;
-		}
-		#isolation-test-panel th { font-weight: 600; }
-		#isolation-test-panel .pass { color: #000 !important; }
-		#isolation-test-panel .fail { color: #000 !important; }
-		#isolation-test-panel .btn {
-			cursor: pointer;
-			font-size: 12px !important;
-			padding: 6px 12px;
-			border: 1px solid #999;
-			border-radius: 6px;
-			line-height: 1.2 !important;
-			color: #000 !important;
-			background-color: #fff !important;
-		}
-		#isolation-test-panel .btn-on { background: #c0392b; color: #fff !important; border-color: #a93226; }
-		#isolation-test-panel .btn-off { background: #27ae60; color: #fff !important; border-color: #1e8449; }
-		#isolation-test-panel .row-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
-		#isolation-test-panel kbd {
-			font-size: 12px !important;
-			color: #000 !important;
-			background-color: #fff !important;
-			padding: 2px 4px;
-			border: 1px solid #ccc;
-			border-radius: 3px;
-		}
+		body { margin: 0; padding: 0.75rem; font-family: system-ui, sans-serif; }
+		h1 { margin: 0 0 0.5rem; font-size: 16px; }
+		p { margin: 0 0 1rem; font-size: 12px; color: #333; }
 	</style>
 </head>
 <body>
-	<p id="shadow-test-notice">
-		이 페이지는 <strong>Shadow 안쪽이 바깥 CSS에 안 망가지는지</strong> 보기 위한 <strong>개발용 검증</strong>입니다.
-		<strong>Hostile CSS</strong>를 켜면 아래 회색 박스 안만 일부러 이상한 값으로 덮입니다(장난이 아니라 시뮬레이션).
-		우하단 토글로 끄면 본문은 <strong>12px · 검정(#000) · 흰 배경(#fff)</strong>으로 돌아갑니다.
-		패널에 나오는 툴바 <code>font-size</code>(예: 14px)는 <strong>SunEditor 기본 스킨</strong> 값이며, 페이지 본문 12px 설정과는 별개입니다.
+	<h1>SunEditor Shadow DOM 데모</h1>
+	<p>
+		<code>&lt;base href="../../"&gt;</code> 로 루트의 <code>dist/</code>, <code>src/langs/</code>를 가리킵니다. 저장소 루트에서
+		<code>npx serve .</code> 후 <code>/test/dev/shadow_test.html</code> 로 열 수 있습니다.
 	</p>
-	<div id="hostile-strike-zone">
-		<h1>SunEditor Shadow DOM 패치 검증 (일반 vs Shadow)</h1>
-		<p>
-			<code>&lt;base href="../../"&gt;</code> 로 루트의 <code>dist/</code>, <code>src/langs/</code>를 가리킵니다. 저장소 루트에서
-			<code>npx serve .</code> 후 <code>/test/dev/shadow_test.html</code> 로 열 수 있습니다.
-			우하단 패널에서 <strong>Hostile CSS</strong> 토글 및 격리 여부(✓/✗)를 확인하세요.
-		</p>
-
-		<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
-			<div style="flex: 1; min-width: 320px;">
-				<h2>일반 모드 — <code>#editor_normal</code></h2>
-				<p>호스트 라이트 DOM. <code>shadowRoot</code> 옵션 없음.</p>
-				<textarea id="editor_normal" style="display: none"></textarea>
-			</div>
-			<div style="flex: 1; min-width: 320px;">
-				<h2>Shadow 모드 — <code>#editor_shadow</code></h2>
-				<p><code>attachShadow</code> + <code>options.shadowRoot</code></p>
-				<div id="shadow_host"></div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 고정 검증 패널 -->
-	<aside
-		id="isolation-test-panel"
-		aria-label="Shadow CSS 격리 검증"
-		style="
-			position: fixed;
-			right: 12px;
-			bottom: 12px;
-			width: min(520px, calc(100vw - 24px));
-			max-height: min(80vh, 560px);
-			overflow: auto;
-			z-index: 2147483640;
-			background: #fff;
-			color: #000;
-			font-size: 12px;
-			border: 2px solid #ccc;
-			border-radius: 8px;
-			padding: 12px;
-			box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-			font-family: system-ui, sans-serif;
-		"
-	>
-		<h3>Shadow DOM CSS 격리 — 자동 검증</h3>
-		<div class="row-actions" style="margin-bottom: 10px;">
-			<button type="button" class="btn btn-on" id="hostile-toggle-btn" title="page 스타일 #hostile-css 적용 여부">Hostile CSS: ON</button>
-			<button type="button" class="btn" id="revalidate-btn">▶ 재검증</button>
-		</div>
-		<p style="font-size:12px!important;color:#000!important;background:#fff!important;border:none!important;line-height:1.4!important;">
-			검사: <code>.se-toolbar</code> (toolbar_main)의 <kbd>getComputedStyle</kbd>.
-			<br />✓ = baseline과 동일 · ✗ = baseline과 다름. 툴바 <code>font-size</code>는 에디터 CSS(예: 14px) 기준이며 페이지 12px과 무관합니다.
-			<br />Hostile <strong>ON</strong>: 일반 인스턴스는 대부분 ✗, Shadow 격리 시 전부 ✓.
-		</p>
-		<div id="isolation-test-summary" style="margin:8px 0;font-weight:bold;font-size:12px!important;color:#000!important;background:#fff!important;">요약: —</div>
-		<div id="isolation-test-tables" style="overflow-x:auto;">로딩 중…</div>
-	</aside>
+	<div id="shadow_host"></div>
 
 	<script src="dist/suneditor.min.js"></script>
 	<script src="src/langs/ko.js"></script>
@@ -221,16 +31,6 @@
 				console.error('[shadow_test] window.SUNEDITOR 가 없습니다. npm run build:dev 후 dist/suneditor.min.js 를 확인하세요.');
 				return;
 			}
-
-			var PROPS = ['fontSize', 'color', 'backgroundColor', 'fontFamily', 'display', 'visibility', 'opacity'];
-			var baselineNormal = null;
-			var baselineShadow = null;
-
-			var hostileStyleEl = /** @type {HTMLStyleElement} */ (document.getElementById('hostile-css'));
-			var toggleBtn = document.getElementById('hostile-toggle-btn');
-			var revalidateBtn = document.getElementById('revalidate-btn');
-			var summaryEl = document.getElementById('isolation-test-summary');
-			var tablesEl = document.getElementById('isolation-test-tables');
 
 			var BUTTON_LIST = [
 				['undo', 'redo'],
@@ -287,128 +87,6 @@
 				return editorRef;
 			}
 
-			function getToolbar(editor) {
-				try {
-					if (!editor || !editor.$ || !editor.$.context) return null;
-					return editor.$.context.get('toolbar_main');
-				} catch (e) {
-					return null;
-				}
-			}
-
-			function readProps(el) {
-				if (!el) return null;
-				var cs = window.getComputedStyle(el);
-				var o = /** @type {Record<string, string>} */ ({});
-				for (var i = 0; i < PROPS.length; i++) {
-					var p = PROPS[i];
-					var v = /** @type {*} */ (cs)[p];
-					if (p === 'opacity' && v !== null && v !== undefined) v = String(v);
-					o[p] = v == null ? '' : String(v);
-				}
-				return o;
-			}
-
-			function isHostileEnabled() {
-				return hostileStyleEl && !hostileStyleEl.disabled;
-			}
-
-			function setHostileUi() {
-				var on = isHostileEnabled();
-				toggleBtn.textContent = on ? 'Hostile CSS: ON' : 'Hostile CSS: OFF';
-				toggleBtn.className = 'btn ' + (on ? 'btn-on' : 'btn-off');
-				toggleBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-			}
-
-			/** 잠시 hostile 끄고 baseline 측정(동일 뷰, 편집기 생성 직후 1회) */
-			function captureBaselinesAndRestore(done) {
-				if (!hostileStyleEl) {
-					done();
-					return;
-				}
-				var was = hostileStyleEl.disabled;
-				hostileStyleEl.disabled = true;
-				requestAnimationFrame(function () {
-					requestAnimationFrame(function () {
-						var tN = getToolbar(window.editorNormal);
-						var tS = getToolbar(window.editorShadow);
-						baselineNormal = readProps(tN);
-						baselineShadow = readProps(tS);
-						hostileStyleEl.disabled = was;
-						setHostileUi();
-						if (typeof done === 'function') done();
-					});
-				});
-			}
-
-			function render() {
-				var tN = getToolbar(window.editorNormal);
-				var tS = getToolbar(window.editorShadow);
-				var cN = readProps(tN);
-				var cS = readProps(tS);
-
-				var allShadowOk = true;
-				var allNormalOk = true;
-				if (!baselineNormal || !baselineShadow) {
-					summaryEl.textContent = '요약: baseline 없음 — 캡처를 기다리는 중';
-					summaryEl.style.color = '#000';
-					tablesEl.textContent = '';
-					return;
-				}
-
-				var html = '<table><thead><tr><th>속성</th><th>일반 (값)</th><th>vs baseline</th><th>Shadow (값)</th><th>vs baseline</th></tr></thead><tbody>';
-				for (var i = 0; i < PROPS.length; i++) {
-					var prop = PROPS[i];
-					var bN = baselineNormal[prop] || '';
-					var bS = baselineShadow[prop] || '';
-					var vN = cN && cN[prop] != null ? cN[prop] : '—';
-					var vS = cS && cS[prop] != null ? cS[prop] : '—';
-					var nOk = cN && (cN[prop] === bN);
-					var sOk = cS && (cS[prop] === bS);
-					if (!nOk) allNormalOk = false;
-					if (!sOk) allShadowOk = false;
-					var markN = nOk ? '✓' : '✗';
-					var markS = sOk ? '✓' : '✗';
-					var clN = nOk ? 'pass' : 'fail';
-					var clS = sOk ? 'pass' : 'fail';
-					html += '<tr><td><code>' + prop + '</code></td>';
-					html += '<td style="word-break:break-all;max-width:100px;">' + escapeHtml(String(vN).slice(0, 200)) + '</td>';
-					html += '<td class="' + clN + '">' + markN + '</td>';
-					html += '<td style="word-break:break-all;max-width:100px;">' + escapeHtml(String(vS).slice(0, 200)) + '</td>';
-					html += '<td class="' + clS + '">' + markS + '</td></tr>';
-				}
-				html += '</tbody></table>';
-				tablesEl.innerHTML = html;
-
-				var hostile = isHostileEnabled();
-				if (hostile && allShadowOk) {
-					summaryEl.textContent = '요약: Shadow — 전 항목 baseline 일치(✓) → 격리 성공(침투 없음으로 보는 경우)';
-					summaryEl.style.color = '#000';
-				} else if (hostile && !allShadowOk) {
-					summaryEl.textContent = '요약: Shadow — 일부 baseline과 다름(✗). inheritance 또는 스코프 이슈 확인';
-					summaryEl.style.color = '#000';
-				} else if (!hostile) {
-					summaryEl.textContent = '요약: Hostile OFF — 양쪽이 baseline에 맞으면 항목이 ✓(양쪽 복원 성공).';
-					summaryEl.style.color = '#000';
-				} else {
-					summaryEl.textContent = '요약: 일반/Shadow 상태 확인(위 표 참고)';
-					summaryEl.style.color = '#000';
-				}
-			}
-
-			function escapeHtml(s) {
-				return s
-					.replace(/&/g, '&amp;')
-					.replace(/</g, '&lt;')
-					.replace(/>/g, '&gt;')
-					.replace(/"/g, '&quot;');
-			}
-
-			function validate() {
-				render();
-			}
-
-			window.editorNormal = createEditor('normal', document.getElementById('editor_normal'), null);
 			var host = document.getElementById('shadow_host');
 			var sr = host.attachShadow({ mode: 'open' });
 			var link = document.createElement('link');
@@ -424,28 +102,7 @@
 			ta.style.display = 'none';
 			sr.appendChild(ta);
 			window.editorShadow = createEditor('shadow', ta, sr);
-
-			if (revalidateBtn) revalidateBtn.addEventListener('click', validate);
-			if (toggleBtn) {
-				toggleBtn.addEventListener('click', function () {
-					if (!hostileStyleEl) return;
-					hostileStyleEl.disabled = isHostileEnabled() ? true : false;
-					setHostileUi();
-					validate();
-				});
-			}
-
-			setHostileUi();
-			function runInitialVerify() {
-				captureBaselinesAndRestore(validate);
-			}
-			if (document.readyState === 'complete') {
-				requestAnimationFrame(runInitialVerify);
-			} else {
-				window.addEventListener('load', runInitialVerify, { once: true });
-			}
-
-			console.log('[shadow_test] ready — normal & shadow + isolation panel');
+			console.log('[shadow_test] ready — shadow editor');
 		})();
 	</script>
 </body>

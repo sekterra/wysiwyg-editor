@@ -21,6 +21,47 @@ const STYLE_MAP = {
 };
 
 /**
+ * @description When toolbar click causes blur, the Table plugin may reset multi-cell selection state.
+ * Restore minimal state + visual classes so bulk-format actions can apply consistently and the selection block isn't "canceled".
+ *
+ * @param {SunEditor.Deps} $
+ * @param {HTMLTableCellElement[]} cells
+ */
+function restoreTableMultiSelectionState($, cells) {
+	const table = $.plugins?.table;
+	if (!table?.state || !cells?.length) return;
+
+	// restore plugin state (best-effort)
+	table.state.selectedCells = cells;
+	table.state.fixedCell = cells[0];
+	table.state.selectedCell = dom.query.findVisualLastCell?.(cells) || cells[cells.length - 1];
+	table.state.selectedTable = cells[0].closest('table');
+
+	// restore visual classes (they may have been cleared during blur/controller off)
+	for (let i = 0; i < cells.length; i++) {
+		dom.utils.addClass(cells[i], 'se-selected-table-cell');
+	}
+}
+
+/**
+ * @param {SunEditor.Deps} $
+ * @param {HTMLTableCellElement[]} cells
+ */
+function finalizeMultiCellFormat($, cells) {
+	restoreTableMultiSelectionState($, cells);
+	// keep a collapsed caret inside the first cell to avoid table controller cleaning up selection styles
+	const cell = cells[0];
+	const anchor = cell.querySelector?.('div') || cell;
+	try {
+		$.selection.setRange(anchor, 0, anchor, 0);
+	} catch {
+		/* ignore */
+	}
+	$.store.set('_lastSelectionNode', null);
+	$.focusManager.focus();
+}
+
+/**
  * @param {SunEditor.Deps} $
  * @returns {HTMLTableCellElement[]|null}
  */
@@ -30,12 +71,14 @@ export function getMultiSelectedTableCells($) {
 	if (live?.length >= 2) {
 		$.store.set('_tableMultiCellFormatSnapshot', null);
 		const ok = /** @type {HTMLTableCellElement[]} */ (live.slice().filter((c) => c?.isConnected));
+		if (ok.length >= 2) restoreTableMultiSelectionState($, ok);
 		return ok.length >= 2 ? ok : null;
 	}
 	const snap = /** @type {HTMLTableCellElement[]|null|undefined} */ ($.store.get('_tableMultiCellFormatSnapshot'));
 	if (snap?.length >= 2) {
 		$.store.set('_tableMultiCellFormatSnapshot', null);
 		const ok = snap.slice().filter((c) => c?.isConnected);
+		if (ok.length >= 2) restoreTableMultiSelectionState($, /** @type {HTMLTableCellElement[]} */ (ok));
 		return ok.length >= 2 ? /** @type {HTMLTableCellElement[]} */ (ok) : null;
 	}
 	return null;
@@ -97,6 +140,8 @@ export function tryBulkFontStyle($, command) {
 	const cells = getMultiSelectedTableCells($);
 	if (!cells) return false;
 
+	restoreTableMultiSelectionState($, cells);
+
 	let cmdResolved = $.options.get('_defaultTagCommand')[command.toLowerCase()] || command;
 	let nodeName = $.options.get('convertTextTags')[cmdResolved] || cmdResolved;
 	const mapKey = String(cmdResolved).toLowerCase();
@@ -121,7 +166,7 @@ export function tryBulkFontStyle($, command) {
 		$.history.resume();
 		$.history.push(false);
 	}
-	$.focusManager.focus();
+	finalizeMultiCellFormat($, cells);
 	return true;
 }
 
@@ -133,6 +178,7 @@ export function tryBulkFontStyle($, command) {
 export function withMultiTableCellsHistory($, fn) {
 	const cells = getMultiSelectedTableCells($);
 	if (!cells) return false;
+	restoreTableMultiSelectionState($, cells);
 	$.history.pause();
 	try {
 		for (let i = 0; i < cells.length; i++) {
@@ -143,7 +189,7 @@ export function withMultiTableCellsHistory($, fn) {
 		$.history.resume();
 		$.history.push(false);
 	}
-	$.focusManager.focus();
+	finalizeMultiCellFormat($, cells);
 	return true;
 }
 
@@ -156,6 +202,7 @@ export function withMultiTableCellsHistory($, fn) {
 export function tryBulkTableAlign($, value, defaultDir) {
 	const cells = getMultiSelectedTableCells($);
 	if (!cells) return false;
+	restoreTableMultiSelectionState($, cells);
 
 	const alignVal = value === defaultDir ? '' : value;
 
@@ -172,7 +219,6 @@ export function tryBulkTableAlign($, value, defaultDir) {
 		$.history.resume();
 		$.history.push(false);
 	}
-	$.store.set('_lastSelectionNode', null);
-	$.focusManager.focus();
+	finalizeMultiCellFormat($, cells);
 	return true;
 }

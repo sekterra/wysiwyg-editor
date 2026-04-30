@@ -59,8 +59,10 @@ class Selection_ {
 		let selection = null;
 
 		const sr = this.#liveShadowRoot();
-		if (typeof sr?.getSelection === 'function') {
-			selection = sr.getSelection();
+		// `ShadowRoot.getSelection()` exists in some browsers but is not in TS lib.dom yet.
+		const srAny = /** @type {*} */ (sr);
+		if (typeof srAny?.getSelection === 'function') {
+			selection = srAny.getSelection();
 		} else {
 			selection = this.#frameContext.get('_ww').getSelection();
 		}
@@ -88,8 +90,10 @@ class Selection_ {
 		const ww = this.#frameContext.get('wysiwyg');
 		let selection = null;
 		const sr = this.#liveShadowRoot();
-		if (typeof sr?.getSelection === 'function') {
-			selection = sr.getSelection();
+		// `ShadowRoot.getSelection()` exists in some browsers but is not in TS lib.dom yet.
+		const srAny = /** @type {*} */ (sr);
+		if (typeof srAny?.getSelection === 'function') {
+			selection = srAny.getSelection();
 		} else {
 			selection = this.#frameContext.get('_ww').getSelection();
 		}

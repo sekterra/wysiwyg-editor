@@ -1,3 +1,4 @@
+import type {} from '../../../typedef';
 /**
  * @typedef {import('../actions').Action[]} EventActions
  * @typedef {import('../ports').EventReducerPorts} EventPorts
@@ -12,6 +13,6 @@
  * @returns {boolean} Return `false` to stop the processing
  */
 export function reduceTabDown(this: void, actions: EventActions, _ports: EventPorts, ctx: EventKeydownCtx): boolean;
-export type EventActions = import("../actions").Action[];
-export type EventPorts = import("../ports").EventReducerPorts;
-export type EventKeydownCtx = import("../reducers/keydown.reducer").KeydownReducerCtx;
+export type EventActions = import('../actions').Action[];
+export type EventPorts = import('../ports').EventReducerPorts;
+export type EventKeydownCtx = import('../reducers/keydown.reducer').KeydownReducerCtx;

@@ -1,6 +1,6 @@
 import { PluginDropdown } from '../../interfaces';
 import { dom } from '../../helper';
-import * as tableMultiCellFormat from './table/services/table.multiCellFormat';
+import * as tableMultiCellFormat from '../../core/logic/dom/tableMultiCellFormat';
 
 /**
  * @typedef {Object} AlignPluginOptions

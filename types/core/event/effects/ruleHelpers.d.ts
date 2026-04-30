@@ -1,4 +1,5 @@
-export type EventPorts = import("../ports").EventReducerPorts;
+import type {} from '../../../typedef';
+export type EventPorts = import('../ports').EventReducerPorts;
 /**
  * @typedef {import('../ports').EventReducerPorts} EventPorts
  */

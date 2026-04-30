@@ -1,3 +1,4 @@
+import type {} from '../../../../typedef';
 /**
  * @description Creates the initial HTML structure for the table plugin.
  * @returns {HTMLDivElement}
@@ -14,13 +15,16 @@ export function CreateHTML_controller_table({ lang, icons }: SunEditor.Deps): HT
  * @param {boolean} cellControllerTop - Whether to position cell controller on top
  * @returns {{ html: HTMLElement, splitButton: HTMLButtonElement, columnButton: HTMLButtonElement, rowButton: HTMLButtonElement, mergeButton: HTMLButtonElement, unmergeButton: HTMLButtonElement }}
  */
-export function CreateHTML_controller_cell({ lang, icons }: SunEditor.Deps, cellControllerTop: boolean): {
-    html: HTMLElement;
-    splitButton: HTMLButtonElement;
-    columnButton: HTMLButtonElement;
-    rowButton: HTMLButtonElement;
-    mergeButton: HTMLButtonElement;
-    unmergeButton: HTMLButtonElement;
+export function CreateHTML_controller_cell(
+	{ lang, icons }: SunEditor.Deps,
+	cellControllerTop: boolean,
+): {
+	html: HTMLElement;
+	splitButton: HTMLButtonElement;
+	columnButton: HTMLButtonElement;
+	rowButton: HTMLButtonElement;
+	mergeButton: HTMLButtonElement;
+	unmergeButton: HTMLButtonElement;
 };
 /**
  * @typedef {Object} TableCtrlProps
@@ -47,21 +51,21 @@ export function CreateHTML_controller_cell({ lang, icons }: SunEditor.Deps, cell
  */
 export function CreateHTML_controller_properties({ lang, icons, options }: SunEditor.Deps): TableCtrlProps;
 export type TableCtrlProps = {
-    html: HTMLElement;
-    controller_props_title: HTMLElement;
-    borderButton: HTMLButtonElement;
-    borderFormatButton: HTMLButtonElement;
-    cell_alignment: HTMLElement;
-    cell_alignment_vertical: HTMLElement;
-    cell_alignment_table_text: HTMLElement;
-    border_style: HTMLButtonElement;
-    border_color: HTMLInputElement;
-    border_width: HTMLInputElement;
-    back_color: HTMLInputElement;
-    font_color: HTMLInputElement;
-    palette_border_button: HTMLButtonElement;
-    font_bold: HTMLButtonElement;
-    font_underline: HTMLButtonElement;
-    font_italic: HTMLButtonElement;
-    font_strike: HTMLButtonElement;
+	html: HTMLElement;
+	controller_props_title: HTMLElement;
+	borderButton: HTMLButtonElement;
+	borderFormatButton: HTMLButtonElement;
+	cell_alignment: HTMLElement;
+	cell_alignment_vertical: HTMLElement;
+	cell_alignment_table_text: HTMLElement;
+	border_style: HTMLButtonElement;
+	border_color: HTMLInputElement;
+	border_width: HTMLInputElement;
+	back_color: HTMLInputElement;
+	font_color: HTMLInputElement;
+	palette_border_button: HTMLButtonElement;
+	font_bold: HTMLButtonElement;
+	font_underline: HTMLButtonElement;
+	font_italic: HTMLButtonElement;
+	font_strike: HTMLButtonElement;
 };

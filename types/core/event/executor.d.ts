@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 /**
  * @typedef {import('./actions').Action[]} EventActions
  */
@@ -9,4 +10,4 @@
  * @returns {Promise<false|undefined>} Returns `false` if execution was halted, `undefined` if all actions completed.
  */
 export function actionExecutor(actions: EventActions, effContext: any): Promise<false | undefined>;
-export type EventActions = import("./actions").Action[];
+export type EventActions = import('./actions').Action[];

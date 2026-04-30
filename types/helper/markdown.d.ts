@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /**
  * @description Converts a JSON tree (from htmlToJson) to a Markdown string.
  * @param {Object} jsonNode JSON node from htmlToJson
@@ -21,6 +22,6 @@ export function jsonToMarkdown(jsonNode: any): string;
 export function markdownToHtml(md: string, defaultLine?: string): string;
 export default markdown;
 declare namespace markdown {
-    export { jsonToMarkdown };
-    export { markdownToHtml };
+	export { jsonToMarkdown };
+	export { markdownToHtml };
 }

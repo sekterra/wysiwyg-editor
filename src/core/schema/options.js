@@ -296,6 +296,7 @@ export const DEFAULTS = {
  * @property {Object<string, string>} [lang] - Language configuration. default : EN
  * @property {Object<string, string>} [icons] - Overrides the default icons.
  * @property {"ltr"|"rtl"} [textDirection="ltr"] - Text direction: `ltr` or `rtl`.
+ * @property {ShadowRoot} [shadowRoot] - Explicit ShadowRoot to use for selection tracking in Shadow DOM integrations.
  * @property {Array<string>} [reverseButtons=['indent-outdent']] - An array of command pairs whose shortcut icons should be opposite each other.
  * - Depends on the `textDirection` mode.
  * ///

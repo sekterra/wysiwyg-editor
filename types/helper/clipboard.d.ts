@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /**
  * @description Write the content to the clipboard
  * - Iframe is replaced with a placeholder : `<div data-se-iframe-holder-src="iframe.src">[iframe: iframe.src]</div>`
@@ -7,6 +8,6 @@
  */
 export function write(content: Element | Text | string): Promise<void | false>;
 declare namespace _default {
-    export { write };
+	export { write };
 }
 export default _default;

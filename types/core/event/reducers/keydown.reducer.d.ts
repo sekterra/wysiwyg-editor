@@ -1,3 +1,4 @@
+import type {} from '../../../typedef';
 /**
  * @typedef {import('../ports').EventReducerPorts} EventPorts
  */
@@ -26,58 +27,58 @@
  * @returns {Promise<EventActions>} Action list
  */
 export function reduceKeydown(ports: EventPorts, ctx: KeydownReducerCtx): Promise<EventActions>;
-export type EventPorts = import("../ports").EventReducerPorts;
+export type EventPorts = import('../ports').EventReducerPorts;
 /**
  * - Keydown Reducer Context object
  */
 export type KeydownReducerCtx = {
-    /**
-     * - The keyboard event
-     */
-    e: KeyboardEvent;
-    /**
-     * - Frame context object
-     */
-    fc: SunEditor.FrameContext;
-    /**
-     * - Editor store object
-     */
-    store: SunEditor.Store;
-    /**
-     * - Options object
-     */
-    options: SunEditor.Options;
-    /**
-     * - Frame options object
-     */
-    frameOptions: SunEditor.FrameOptions;
-    /**
-     * - Current selection range
-     */
-    range: Range;
-    /**
-     * - Current selection node
-     */
-    selectionNode: HTMLElement | Text;
-    /**
-     * - Current format element
-     */
-    formatEl: HTMLElement;
-    /**
-     * - Key code
-     */
-    keyCode: string;
-    /**
-     * - Whether the `ctrl` key is pressed
-     */
-    ctrl: boolean;
-    /**
-     * - Whether the `alt` key is pressed
-     */
-    alt: boolean;
-    /**
-     * - Whether the `shift` key is pressed
-     */
-    shift: boolean;
+	/**
+	 * - The keyboard event
+	 */
+	e: KeyboardEvent;
+	/**
+	 * - Frame context object
+	 */
+	fc: SunEditor.FrameContext;
+	/**
+	 * - Editor store object
+	 */
+	store: SunEditor.Store;
+	/**
+	 * - Options object
+	 */
+	options: SunEditor.Options;
+	/**
+	 * - Frame options object
+	 */
+	frameOptions: SunEditor.FrameOptions;
+	/**
+	 * - Current selection range
+	 */
+	range: Range;
+	/**
+	 * - Current selection node
+	 */
+	selectionNode: HTMLElement | Text;
+	/**
+	 * - Current format element
+	 */
+	formatEl: HTMLElement;
+	/**
+	 * - Key code
+	 */
+	keyCode: string;
+	/**
+	 * - Whether the `ctrl` key is pressed
+	 */
+	ctrl: boolean;
+	/**
+	 * - Whether the `alt` key is pressed
+	 */
+	alt: boolean;
+	/**
+	 * - Whether the `shift` key is pressed
+	 */
+	shift: boolean;
 };
-export type EventActions = import("../actions").Action[];
+export type EventActions = import('../actions').Action[];

@@ -1,56 +1,57 @@
+import type {} from '../../typedef';
 export default Drawing;
 export type DrawingPluginOptions = {
-    /**
-     * - The output format of the drawing. Options: `"dataurl"`, `"svg"`.
-     */
-    outputFormat?: string;
-    /**
-     * - Whether to enable format type selection (`block` vs `inline`).
-     */
-    useFormatType?: boolean;
-    /**
-     * - The default format type, either `"block"` or `"inline"`.
-     */
-    defaultFormatType?: string;
-    /**
-     * - Whether to maintain the chosen format type after drawing.
-     */
-    keepFormatType?: boolean;
-    /**
-     * - The width of the drawing line.
-     */
-    lineWidth?: number;
-    /**
-     * - Whether to reconnect lines when drawing.
-     */
-    lineReconnect?: boolean;
-    /**
-     * - The style of the line cap (`"butt"`, `"round"`, or `"square"`).
-     */
-    lineCap?: CanvasLineCap;
-    /**
-     * - The color of the drawing line.
-     */
-    lineColor?: string;
-    /**
-     * - Whether the modal form can be resized.
-     */
-    canResize?: boolean;
-    /**
-     * - Whether to maintain the aspect ratio when resizing.
-     */
-    maintainRatio?: boolean;
-    /**
-     * - The size configuration for the drawing modal form.
-     */
-    formSize?: {
-        width?: string;
-        height?: string;
-        maxWidth?: string;
-        maxHeight?: string;
-        minWidth?: string;
-        minHeight?: string;
-    };
+	/**
+	 * - The output format of the drawing. Options: `"dataurl"`, `"svg"`.
+	 */
+	outputFormat?: string;
+	/**
+	 * - Whether to enable format type selection (`block` vs `inline`).
+	 */
+	useFormatType?: boolean;
+	/**
+	 * - The default format type, either `"block"` or `"inline"`.
+	 */
+	defaultFormatType?: string;
+	/**
+	 * - Whether to maintain the chosen format type after drawing.
+	 */
+	keepFormatType?: boolean;
+	/**
+	 * - The width of the drawing line.
+	 */
+	lineWidth?: number;
+	/**
+	 * - Whether to reconnect lines when drawing.
+	 */
+	lineReconnect?: boolean;
+	/**
+	 * - The style of the line cap (`"butt"`, `"round"`, or `"square"`).
+	 */
+	lineCap?: CanvasLineCap;
+	/**
+	 * - The color of the drawing line.
+	 */
+	lineColor?: string;
+	/**
+	 * - Whether the modal form can be resized.
+	 */
+	canResize?: boolean;
+	/**
+	 * - Whether to maintain the aspect ratio when resizing.
+	 */
+	maintainRatio?: boolean;
+	/**
+	 * - The size configuration for the drawing modal form.
+	 */
+	formSize?: {
+		width?: string;
+		height?: string;
+		maxWidth?: string;
+		maxHeight?: string;
+		minWidth?: string;
+		minHeight?: string;
+	};
 };
 /**
  * @typedef {Object} DrawingPluginOptions
@@ -77,67 +78,67 @@ export type DrawingPluginOptions = {
  * @description Drawing modal plugin.
  */
 declare class Drawing extends PluginModal {
-    /**
-     * @constructor
-     * @param {SunEditor.Kernel} kernel - The Kernel instance
-     * @param {DrawingPluginOptions} pluginOptions
-     */
-    constructor(kernel: SunEditor.Kernel, pluginOptions: DrawingPluginOptions);
-    title: any;
-    pluginOptions: {
-        outputFormat: string;
-        useFormatType: boolean;
-        defaultFormatType: string;
-        keepFormatType: boolean;
-        lineWidth: number;
-        lineReconnect: boolean;
-        lineCap: CanvasLineCap;
-        lineColor: string;
-        formSize: {
-            /**
-             * - The width of the modal form.
-             */
-            width: string;
-            /**
-             * - The height of the modal form.
-             */
-            height: string;
-            /**
-             * - The maximum width of the modal form.
-             */
-            maxWidth: string;
-            /**
-             * - The maximum height of the modal form.
-             */
-            maxHeight: string;
-            /**
-             * - The minimum width of the modal form.
-             */
-            minWidth: string;
-            /**
-             * - The minimum height of the modal form.
-             */
-            minHeight: string;
-        };
-        canResize: boolean;
-        maintainRatio: boolean;
-    };
-    modal: Modal;
-    as: string;
-    asBlock: Element;
-    asInline: Element;
-    /**
-     * @type {HTMLCanvasElement}
-     */
-    canvas: HTMLCanvasElement;
-    ctx: CanvasRenderingContext2D;
-    isDrawing: boolean;
-    points: any[];
-    paths: any[];
-    resizeObserver: ResizeObserver;
-    modalOff(isUpdate: boolean): void;
-    modalAction(): Promise<boolean>;
-    #private;
+	/**
+	 * @constructor
+	 * @param {SunEditor.Kernel} kernel - The Kernel instance
+	 * @param {DrawingPluginOptions} pluginOptions
+	 */
+	constructor(kernel: SunEditor.Kernel, pluginOptions: DrawingPluginOptions);
+	title: any;
+	pluginOptions: {
+		outputFormat: string;
+		useFormatType: boolean;
+		defaultFormatType: string;
+		keepFormatType: boolean;
+		lineWidth: number;
+		lineReconnect: boolean;
+		lineCap: CanvasLineCap;
+		lineColor: string;
+		formSize: {
+			/**
+			 * - The width of the modal form.
+			 */
+			width: string;
+			/**
+			 * - The height of the modal form.
+			 */
+			height: string;
+			/**
+			 * - The maximum width of the modal form.
+			 */
+			maxWidth: string;
+			/**
+			 * - The maximum height of the modal form.
+			 */
+			maxHeight: string;
+			/**
+			 * - The minimum width of the modal form.
+			 */
+			minWidth: string;
+			/**
+			 * - The minimum height of the modal form.
+			 */
+			minHeight: string;
+		};
+		canResize: boolean;
+		maintainRatio: boolean;
+	};
+	modal: Modal;
+	as: string;
+	asBlock: Element;
+	asInline: Element;
+	/**
+	 * @type {HTMLCanvasElement}
+	 */
+	canvas: HTMLCanvasElement;
+	ctx: CanvasRenderingContext2D;
+	isDrawing: boolean;
+	points: any[];
+	paths: any[];
+	resizeObserver: ResizeObserver;
+	modalOff(isUpdate: boolean): void;
+	modalAction(): Promise<boolean>;
+	#private;
 }
 import { PluginModal } from '../../interfaces';
 import { Modal } from '../../modules/contract';

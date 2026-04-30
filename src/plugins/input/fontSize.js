@@ -1,6 +1,6 @@
 import { PluginCommand, PluginDropdown, PluginInput } from '../../interfaces';
 import { dom, numbers, keyCodeMap } from '../../helper';
-import * as tableMultiCellFormat from '../dropdown/table/services/table.multiCellFormat';
+import * as tableMultiCellFormat from '../../core/logic/dom/tableMultiCellFormat';
 
 void PluginCommand;
 void PluginDropdown;

@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /** ------------------------------------------------------- [meta] -------------------------------------------------------  */
 /**
  * @description `Shift` check
@@ -92,19 +93,19 @@ export function isDocumentTypeObserverKey(code: string): boolean;
 export function isNonResponseKey(code: string): boolean;
 export default keyCodeMap;
 declare namespace keyCodeMap {
-    export { isShift };
-    export { isCtrl };
-    export { isAlt };
-    export { isComposing };
-    export { isBackspace };
-    export { isTab };
-    export { isEnter };
-    export { isEsc };
-    export { isSpace };
-    export { isDirectionKey };
-    export { isRemoveKey };
-    export { isNonTextKey };
-    export { isHistoryRelevantKey };
-    export { isDocumentTypeObserverKey };
-    export { isNonResponseKey };
+	export { isShift };
+	export { isCtrl };
+	export { isAlt };
+	export { isComposing };
+	export { isBackspace };
+	export { isTab };
+	export { isEnter };
+	export { isEsc };
+	export { isSpace };
+	export { isDirectionKey };
+	export { isRemoveKey };
+	export { isNonTextKey };
+	export { isHistoryRelevantKey };
+	export { isDocumentTypeObserverKey };
+	export { isNonResponseKey };
 }

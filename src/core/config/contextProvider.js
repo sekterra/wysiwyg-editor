@@ -159,7 +159,7 @@ export default class ContextProvider {
 			const explicit = this.#initShadowRoot;
 			if (
 				explicit &&
-				typeof explicit.getSelection === 'function' &&
+				typeof /** @type {*} */ (explicit).getSelection === 'function' &&
 				explicit.contains(wwFrame)
 			) {
 				this.shadowRoot = explicit;

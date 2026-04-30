@@ -1,65 +1,66 @@
+import type {} from '../../typedef';
 export default HueSlider;
 /**
  * HueSlider color information object
  */
 export type HueSliderColor = {
-    /**
-     * - HEX color
-     */
-    hex: string;
-    /**
-     * - Red color value
-     */
-    r: number;
-    /**
-     * - Green color value
-     */
-    g: number;
-    /**
-     * - Blue color value
-     */
-    b: number;
-    /**
-     * - Hue color value
-     */
-    h: number;
-    /**
-     * - Saturation color value
-     */
-    s: number;
-    /**
-     * - Lightness color value
-     */
-    l: number;
+	/**
+	 * - HEX color
+	 */
+	hex: string;
+	/**
+	 * - Red color value
+	 */
+	r: number;
+	/**
+	 * - Green color value
+	 */
+	g: number;
+	/**
+	 * - Blue color value
+	 */
+	b: number;
+	/**
+	 * - Hue color value
+	 */
+	h: number;
+	/**
+	 * - Saturation color value
+	 */
+	s: number;
+	/**
+	 * - Lightness color value
+	 */
+	l: number;
 };
 export type HueSliderParams = {
-    /**
-     * Whether to create a new form element.
-     */
-    isNewForm?: boolean;
-    /**
-     * Parent elements for controller positioning.
-     */
-    parents?: Array<HTMLElement>;
-    /**
-     * Controller options (excluding 'parents')
-     */
-    controllerOptions?: import("./Controller").ControllerParams;
+	/**
+	 * Whether to create a new form element.
+	 */
+	isNewForm?: boolean;
+	/**
+	 * Parent elements for controller positioning.
+	 */
+	parents?: Array<HTMLElement>;
+	/**
+	 * Controller options (excluding 'parents')
+	 */
+	controllerOptions?: import('./Controller').ControllerParams;
 };
 /**
  * @returns {{slider: HTMLElement, offscreenCanvas: HTMLCanvasElement, offscreenCtx: CanvasRenderingContext2D, wheel: HTMLCanvasElement, wheelCtx: CanvasRenderingContext2D, wheelPointer: HTMLElement, gradientBar: HTMLCanvasElement, gradientPointer: HTMLElement, fanalColorHex: HTMLElement, fanalColorBackground: HTMLElement}}
  */
 export function CreateSliderCtx(): {
-    slider: HTMLElement;
-    offscreenCanvas: HTMLCanvasElement;
-    offscreenCtx: CanvasRenderingContext2D;
-    wheel: HTMLCanvasElement;
-    wheelCtx: CanvasRenderingContext2D;
-    wheelPointer: HTMLElement;
-    gradientBar: HTMLCanvasElement;
-    gradientPointer: HTMLElement;
-    fanalColorHex: HTMLElement;
-    fanalColorBackground: HTMLElement;
+	slider: HTMLElement;
+	offscreenCanvas: HTMLCanvasElement;
+	offscreenCtx: CanvasRenderingContext2D;
+	wheel: HTMLCanvasElement;
+	wheelCtx: CanvasRenderingContext2D;
+	wheelPointer: HTMLElement;
+	gradientBar: HTMLCanvasElement;
+	gradientPointer: HTMLElement;
+	fanalColorHex: HTMLElement;
+	fanalColorBackground: HTMLElement;
 };
 /**
  * HueSlider color information object
@@ -85,62 +86,62 @@ export function CreateSliderCtx(): {
  * It must be called every time it is used.
  */
 declare class HueSlider {
-    /**
-     * @constructor
-     * @param {import('./ColorPicker').default} inst The instance object that called the constructor.
-     * @param {SunEditor.Deps} $ Kernel dependencies
-     * @param {HueSliderParams} [params={}] Hue slider options
-     * @param {string} [className=""] The class name of the hue slider.
-     */
-    constructor(inst: import("./ColorPicker").default, $: SunEditor.Deps, params?: HueSliderParams, className?: string);
-    inst: import("./ColorPicker").default;
-    ctx: {
-        wheelX: number;
-        wheelY: number;
-        lightness: number;
-        wheelPointerX: string;
-        wheelPointerY: string;
-        gradientPointerX: string;
-        color: {
-            hex: string;
-            r: number;
-            g: number;
-            b: number;
-            h: number;
-            s: number;
-            l: number;
-        };
-    };
-    isOpen: boolean;
-    controlle: any;
-    circle: Element;
-    controller: Controller;
-    controllerAction(target: HTMLButtonElement): void;
-    controllerClose(): void;
-    /**
-     * @description Get the current color information.
-     * @returns {HueSliderColor} color information
-     */
-    get(): HueSliderColor;
-    /**
-     * @description Open the hue slider.
-     * @param {Node} target The element to attach the hue slider.
-     */
-    open(target: Node): void;
-    /**
-     * @description Close the hue slider.
-     * - Call the instance's `hueSliderCancelAction` method.
-     */
-    close(): void;
-    /**
-     * @description Attach the hue slider to the form element.
-     * @param {?Node} [form] The element to attach the hue slider.
-     */
-    attach(form?: Node | null): void;
-    /**
-     * @description Initialize the hue slider information.
-     */
-    init(): void;
-    #private;
+	/**
+	 * @constructor
+	 * @param {import('./ColorPicker').default} inst The instance object that called the constructor.
+	 * @param {SunEditor.Deps} $ Kernel dependencies
+	 * @param {HueSliderParams} [params={}] Hue slider options
+	 * @param {string} [className=""] The class name of the hue slider.
+	 */
+	constructor(inst: import('./ColorPicker').default, $: SunEditor.Deps, params?: HueSliderParams, className?: string);
+	inst: import('./ColorPicker').default;
+	ctx: {
+		wheelX: number;
+		wheelY: number;
+		lightness: number;
+		wheelPointerX: string;
+		wheelPointerY: string;
+		gradientPointerX: string;
+		color: {
+			hex: string;
+			r: number;
+			g: number;
+			b: number;
+			h: number;
+			s: number;
+			l: number;
+		};
+	};
+	isOpen: boolean;
+	controlle: any;
+	circle: Element;
+	controller: Controller;
+	controllerAction(target: HTMLButtonElement): void;
+	controllerClose(): void;
+	/**
+	 * @description Get the current color information.
+	 * @returns {HueSliderColor} color information
+	 */
+	get(): HueSliderColor;
+	/**
+	 * @description Open the hue slider.
+	 * @param {Node} target The element to attach the hue slider.
+	 */
+	open(target: Node): void;
+	/**
+	 * @description Close the hue slider.
+	 * - Call the instance's `hueSliderCancelAction` method.
+	 */
+	close(): void;
+	/**
+	 * @description Attach the hue slider to the form element.
+	 * @param {?Node} [form] The element to attach the hue slider.
+	 */
+	attach(form?: Node | null): void;
+	/**
+	 * @description Initialize the hue slider information.
+	 */
+	init(): void;
+	#private;
 }
 import Controller from './Controller';

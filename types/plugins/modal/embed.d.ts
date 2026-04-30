@@ -1,117 +1,118 @@
+import type {} from '../../typedef';
 export default Embed;
 export type EmbedPluginOptions = {
-    /**
-     * - Whether the embed element can be resized.
-     */
-    canResize?: boolean;
-    /**
-     * - Whether to display the height input field.
-     */
-    showHeightInput?: boolean;
-    /**
-     * - The default width of the embed element (numeric value or with unit).
-     */
-    defaultWidth?: string;
-    /**
-     * - The default height of the embed element (numeric value or with unit).
-     */
-    defaultHeight?: string;
-    /**
-     * - Whether to allow only percentage-based sizing.
-     */
-    percentageOnlySize?: boolean;
-    /**
-     * - The URL for file uploads.
-     * - The server must return:
-     * ```js
-     * {
-     * "result": [
-     * {
-     * "url": "https://example.com/embed.html",
-     * "name": "embed.html",
-     * "size": 2048
-     * }
-     * ]
-     * }
-     * ```
-     */
-    uploadUrl?: string;
-    /**
-     * - Headers to include in file upload requests.
-     */
-    uploadHeaders?: {
-        [x: string]: string;
-    };
-    /**
-     * - The total file upload size limit in bytes.
-     */
-    uploadSizeLimit?: number;
-    /**
-     * - The single file upload size limit in bytes.
-     */
-    uploadSingleSizeLimit?: number;
-    /**
-     * - Additional attributes to set on the `IFRAME` tag.
-     * ```js
-     * { iframeTagAttributes: { allowfullscreen: 'true', loading: 'lazy' } }
-     * ```
-     */
-    iframeTagAttributes?: {
-        [x: string]: string;
-    };
-    /**
-     * - YouTube query parameter appended to the embed URL.
-     * ```js
-     * { query_youtube: 'autoplay=1&mute=1' }
-     * ```
-     */
-    query_youtube?: string;
-    /**
-     * - Vimeo query parameter appended to the embed URL.
-     * ```js
-     * { query_vimeo: 'autoplay=1' }
-     * ```
-     */
-    query_vimeo?: string;
-    /**
-     * - Additional URL patterns to recognize as embeddable content.
-     */
-    urlPatterns?: Array<RegExp>;
-    /**
-     * - Custom embed service definitions.
-     * Each key is a service name, with `pattern` to match the URL, `action` to transform it into an embed URL, and `tag` for the output element.
-     * ```js
-     * {
-     * embedQuery: {
-     * facebook: {
-     * pattern: /(?:https?:\/\/)?(?:www\.)?facebook\.com\/(.+)/i,
-     * action: (url) => `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(url)}`,
-     * tag: 'iframe'
-     * }
-     * }
-     * }
-     * ```
-     */
-    embedQuery?: {
-        [x: string]: {
-            pattern: RegExp;
-            action: (url: string) => string;
-            tag: string;
-        };
-    };
-    /**
-     * - Figure controls.
-     */
-    controls?: SunEditor.Module.Figure.Controls;
-    /**
-     * - Component insertion behavior for selection and cursor placement.
-     * - [default: `options.get('componentInsertBehavior')`]
-     * - `auto`: Move cursor to the next line if possible, otherwise select the component.
-     * - `select`: Always select the inserted component.
-     * - `line`: Move cursor to the next line if possible, or create a new line and move there.
-     * - `none`: Do nothing.
-     */
-    insertBehavior?: SunEditor.ComponentInsertType;
+	/**
+	 * - Whether the embed element can be resized.
+	 */
+	canResize?: boolean;
+	/**
+	 * - Whether to display the height input field.
+	 */
+	showHeightInput?: boolean;
+	/**
+	 * - The default width of the embed element (numeric value or with unit).
+	 */
+	defaultWidth?: string;
+	/**
+	 * - The default height of the embed element (numeric value or with unit).
+	 */
+	defaultHeight?: string;
+	/**
+	 * - Whether to allow only percentage-based sizing.
+	 */
+	percentageOnlySize?: boolean;
+	/**
+	 * - The URL for file uploads.
+	 * - The server must return:
+	 * ```js
+	 * {
+	 * "result": [
+	 * {
+	 * "url": "https://example.com/embed.html",
+	 * "name": "embed.html",
+	 * "size": 2048
+	 * }
+	 * ]
+	 * }
+	 * ```
+	 */
+	uploadUrl?: string;
+	/**
+	 * - Headers to include in file upload requests.
+	 */
+	uploadHeaders?: {
+		[x: string]: string;
+	};
+	/**
+	 * - The total file upload size limit in bytes.
+	 */
+	uploadSizeLimit?: number;
+	/**
+	 * - The single file upload size limit in bytes.
+	 */
+	uploadSingleSizeLimit?: number;
+	/**
+	 * - Additional attributes to set on the `IFRAME` tag.
+	 * ```js
+	 * { iframeTagAttributes: { allowfullscreen: 'true', loading: 'lazy' } }
+	 * ```
+	 */
+	iframeTagAttributes?: {
+		[x: string]: string;
+	};
+	/**
+	 * - YouTube query parameter appended to the embed URL.
+	 * ```js
+	 * { query_youtube: 'autoplay=1&mute=1' }
+	 * ```
+	 */
+	query_youtube?: string;
+	/**
+	 * - Vimeo query parameter appended to the embed URL.
+	 * ```js
+	 * { query_vimeo: 'autoplay=1' }
+	 * ```
+	 */
+	query_vimeo?: string;
+	/**
+	 * - Additional URL patterns to recognize as embeddable content.
+	 */
+	urlPatterns?: Array<RegExp>;
+	/**
+	 * - Custom embed service definitions.
+	 * Each key is a service name, with `pattern` to match the URL, `action` to transform it into an embed URL, and `tag` for the output element.
+	 * ```js
+	 * {
+	 * embedQuery: {
+	 * facebook: {
+	 * pattern: /(?:https?:\/\/)?(?:www\.)?facebook\.com\/(.+)/i,
+	 * action: (url) => `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(url)}`,
+	 * tag: 'iframe'
+	 * }
+	 * }
+	 * }
+	 * ```
+	 */
+	embedQuery?: {
+		[x: string]: {
+			pattern: RegExp;
+			action: (url: string) => string;
+			tag: string;
+		};
+	};
+	/**
+	 * - Figure controls.
+	 */
+	controls?: SunEditor.Module.Figure.Controls;
+	/**
+	 * - Component insertion behavior for selection and cursor placement.
+	 * - [default: `options.get('componentInsertBehavior')`]
+	 * - `auto`: Move cursor to the next line if possible, otherwise select the component.
+	 * - `select`: Always select the inserted component.
+	 * - `line`: Move cursor to the next line if possible, or create a new line and move there.
+	 * - `none`: Do nothing.
+	 */
+	insertBehavior?: SunEditor.ComponentInsertType;
 };
 /**
  * @typedef {Object} EmbedPluginOptions
@@ -177,122 +178,122 @@ export type EmbedPluginOptions = {
  * - (e.g., videos, `IFRAME` elements) into the editor.
  */
 declare class Embed extends PluginModal {
-    /**
-     * @param {HTMLElement} node - The node to check.
-     * @returns {HTMLElement|null} Returns a node if the node is a valid component.
-     */
-    static component(node: HTMLElement): HTMLElement | null;
-    /**
-     * @description Checks if the given URL matches any of the defined URL patterns.
-     * @param {string} url - The URL to check.
-     * @returns {boolean} `true` if the URL matches a known pattern; otherwise, `false`.
-     */
-    static #checkContentType(url: string): boolean;
-    /** @type {Array<RegExp>} */
-    static #urlPatterns: Array<RegExp>;
-    /**
-     * @constructor
-     * @param {SunEditor.Kernel} kernel - The Kernel instance
-     * @param {EmbedPluginOptions} pluginOptions
-     */
-    constructor(kernel: SunEditor.Kernel, pluginOptions: EmbedPluginOptions);
-    title: any;
-    pluginOptions: {
-        canResize: boolean;
-        showHeightInput: boolean;
-        defaultWidth: string;
-        defaultHeight: string;
-        percentageOnlySize: boolean;
-        uploadUrl: string;
-        uploadHeaders: {
-            [x: string]: string;
-        };
-        uploadSizeLimit: number;
-        uploadSingleSizeLimit: number;
-        iframeTagAttributes: {
-            [x: string]: string;
-        };
-        query_youtube: string;
-        query_vimeo: string;
-        insertBehavior: SunEditor.ComponentInsertType;
-    };
-    modal: Modal;
-    figure: Figure;
-    fileModalWrapper: HTMLElement;
-    embedInput: HTMLInputElement;
-    focusElement: HTMLInputElement;
-    previewSrc: HTMLElement;
-    sizeUnit: string;
-    proportion: HTMLInputElement;
-    inputX: HTMLInputElement;
-    inputY: HTMLInputElement;
-    query: {
-        facebook: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-        twitter: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-        instagram: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-        linkedin: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-        pinterest: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-        spotify: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-        codepen: {
-            pattern: RegExp;
-            action: (url: any) => string;
-            tag: string;
-        };
-    };
-    retainFormat(): {
-        query: string;
-        method: (element: HTMLElement) => void;
-    };
-    modalOn(isUpdate: boolean): void;
-    modalAction(): Promise<boolean>;
-    modalInit(): void;
-    componentSelect(target: HTMLElement): void | boolean;
-    componentEdit(target: HTMLElement): void;
-    componentDestroy(target: HTMLElement): Promise<void>;
-    /**
-     * @description Finds and processes the URL for embedding by matching it against known service patterns.
-     * @param {string} url - The original URL.
-     * @returns {{origin: string, url: string, tag: string}|null} An object containing the original URL, the processed URL, and the tag type (e.g., `iframe`),
-     * or `null` if no matching pattern is found.
-     */
-    findProcessUrl(url: string): {
-        origin: string;
-        url: string;
-        tag: string;
-    } | null;
-    /**
-     * @description Processes the provided source (URL or embed code) and submits it for embedding.
-     * - It parses the input, triggers any necessary events, and creates or updates the embed component.
-     * @param {string} [src] - The embed source. If not provided, uses the internally stored link value.
-     * @returns {Promise<boolean>} A promise that resolves to `true` on success or `false` on failure.
-     */
-    submitSRC(src?: string): Promise<boolean>;
-    _caption: HTMLElement;
-    #private;
+	/**
+	 * @param {HTMLElement} node - The node to check.
+	 * @returns {HTMLElement|null} Returns a node if the node is a valid component.
+	 */
+	static component(node: HTMLElement): HTMLElement | null;
+	/**
+	 * @description Checks if the given URL matches any of the defined URL patterns.
+	 * @param {string} url - The URL to check.
+	 * @returns {boolean} `true` if the URL matches a known pattern; otherwise, `false`.
+	 */
+	static #checkContentType(url: string): boolean;
+	/** @type {Array<RegExp>} */
+	static #urlPatterns: Array<RegExp>;
+	/**
+	 * @constructor
+	 * @param {SunEditor.Kernel} kernel - The Kernel instance
+	 * @param {EmbedPluginOptions} pluginOptions
+	 */
+	constructor(kernel: SunEditor.Kernel, pluginOptions: EmbedPluginOptions);
+	title: any;
+	pluginOptions: {
+		canResize: boolean;
+		showHeightInput: boolean;
+		defaultWidth: string;
+		defaultHeight: string;
+		percentageOnlySize: boolean;
+		uploadUrl: string;
+		uploadHeaders: {
+			[x: string]: string;
+		};
+		uploadSizeLimit: number;
+		uploadSingleSizeLimit: number;
+		iframeTagAttributes: {
+			[x: string]: string;
+		};
+		query_youtube: string;
+		query_vimeo: string;
+		insertBehavior: SunEditor.ComponentInsertType;
+	};
+	modal: Modal;
+	figure: Figure;
+	fileModalWrapper: HTMLElement;
+	embedInput: HTMLInputElement;
+	focusElement: HTMLInputElement;
+	previewSrc: HTMLElement;
+	sizeUnit: string;
+	proportion: HTMLInputElement;
+	inputX: HTMLInputElement;
+	inputY: HTMLInputElement;
+	query: {
+		facebook: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+		twitter: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+		instagram: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+		linkedin: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+		pinterest: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+		spotify: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+		codepen: {
+			pattern: RegExp;
+			action: (url: any) => string;
+			tag: string;
+		};
+	};
+	retainFormat(): {
+		query: string;
+		method: (element: HTMLElement) => void;
+	};
+	modalOn(isUpdate: boolean): void;
+	modalAction(): Promise<boolean>;
+	modalInit(): void;
+	componentSelect(target: HTMLElement): void | boolean;
+	componentEdit(target: HTMLElement): void;
+	componentDestroy(target: HTMLElement): Promise<void>;
+	/**
+	 * @description Finds and processes the URL for embedding by matching it against known service patterns.
+	 * @param {string} url - The original URL.
+	 * @returns {{origin: string, url: string, tag: string}|null} An object containing the original URL, the processed URL, and the tag type (e.g., `iframe`),
+	 * or `null` if no matching pattern is found.
+	 */
+	findProcessUrl(url: string): {
+		origin: string;
+		url: string;
+		tag: string;
+	} | null;
+	/**
+	 * @description Processes the provided source (URL or embed code) and submits it for embedding.
+	 * - It parses the input, triggers any necessary events, and creates or updates the embed component.
+	 * @param {string} [src] - The embed source. If not provided, uses the internally stored link value.
+	 * @returns {Promise<boolean>} A promise that resolves to `true` on success or `false` on failure.
+	 */
+	submitSRC(src?: string): Promise<boolean>;
+	_caption: HTMLElement;
+	#private;
 }
 import { PluginModal } from '../../interfaces';
 import { Modal } from '../../modules/contract';

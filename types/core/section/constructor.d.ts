@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 /**
  * @description Create shortcuts desc span.
  * @param {string} command Command string
@@ -26,26 +27,33 @@ export function CreateShortcuts(command: string, button: Element | null, values:
  * @param {Object<string, *>} plugins Plugins object
  * @returns {InitOptionsReturnType} Initialized options and configuration
  */
-export function InitOptions(options: SunEditor.InitOptions, editorTargets: Array<{
-    target: Element;
-    key: any;
-    options: SunEditor.InitFrameOptions;
-}>, plugins: {
-    [x: string]: any;
-}): InitOptionsReturnType;
+export function InitOptions(
+	options: SunEditor.InitOptions,
+	editorTargets: Array<{
+		target: Element;
+		key: any;
+		options: SunEditor.InitFrameOptions;
+	}>,
+	plugins: {
+		[x: string]: any;
+	},
+): InitOptionsReturnType;
 /**
  * @description Create a context object for the editor frame.
  * @param {SunEditor.FrameOptions} targetOptions - `editor.frameOptions`
  * @param {HTMLElement} statusbar - statusbar element
  * @returns {{statusbar: HTMLElement, navigation: HTMLElement, charWrapper: HTMLElement, charCounter: HTMLElement, wordWrapper: HTMLElement, wordCounter: HTMLElement}}
  */
-export function CreateStatusbar(targetOptions: SunEditor.FrameOptions, statusbar: HTMLElement): {
-    statusbar: HTMLElement;
-    navigation: HTMLElement;
-    charWrapper: HTMLElement;
-    charCounter: HTMLElement;
-    wordWrapper: HTMLElement;
-    wordCounter: HTMLElement;
+export function CreateStatusbar(
+	targetOptions: SunEditor.FrameOptions,
+	statusbar: HTMLElement,
+): {
+	statusbar: HTMLElement;
+	navigation: HTMLElement;
+	charWrapper: HTMLElement;
+	charCounter: HTMLElement;
+	wordWrapper: HTMLElement;
+	wordCounter: HTMLElement;
 };
 /**
  * @description Update a button state, attributes, and icons
@@ -54,13 +62,18 @@ export function CreateStatusbar(targetOptions: SunEditor.FrameOptions, statusbar
  * @param {Object<string, string>} icons Icons
  * @param {Object<string, string>} lang lang
  */
-export function UpdateButton(element: HTMLElement | null, plugin: {
-    [x: string]: any;
-}, icons: {
-    [x: string]: string;
-}, lang: {
-    [x: string]: string;
-}): void;
+export function UpdateButton(
+	element: HTMLElement | null,
+	plugin: {
+		[x: string]: any;
+	},
+	icons: {
+		[x: string]: string;
+	},
+	lang: {
+		[x: string]: string;
+	},
+): void;
 /**
  * @description Create editor HTML
  * @param {Array} buttonList `option.buttonList`
@@ -71,136 +84,145 @@ export function UpdateButton(element: HTMLElement | null, plugin: {
  * @param {boolean} isUpdate Is update
  * @returns {{element: HTMLElement, pluginCallButtons: Object<string, Array<HTMLElement>>, responsiveButtons: Array<HTMLElement>, buttonTray: HTMLElement, updateButtons: Array<{button: HTMLElement, plugin: *, key: string}>}}}
  */
-export function CreateToolBar(buttonList: any[], plugins: {
-    [x: string]: any;
-} | null, options: Map<string, any> | SunEditor.Options, icons: {
-    [x: string]: string;
-}, lang: {
-    [x: string]: string;
-}, isUpdate: boolean): {
-    element: HTMLElement;
-    pluginCallButtons: {
-        [x: string]: Array<HTMLElement>;
-    };
-    responsiveButtons: Array<HTMLElement>;
-    buttonTray: HTMLElement;
-    updateButtons: Array<{
-        button: HTMLElement;
-        plugin: any;
-        key: string;
-    }>;
+export function CreateToolBar(
+	buttonList: any[],
+	plugins: {
+		[x: string]: any;
+	} | null,
+	options: Map<string, any> | SunEditor.Options,
+	icons: {
+		[x: string]: string;
+	},
+	lang: {
+		[x: string]: string;
+	},
+	isUpdate: boolean,
+): {
+	element: HTMLElement;
+	pluginCallButtons: {
+		[x: string]: Array<HTMLElement>;
+	};
+	responsiveButtons: Array<HTMLElement>;
+	buttonTray: HTMLElement;
+	updateButtons: Array<{
+		button: HTMLElement;
+		plugin: any;
+		key: string;
+	}>;
 };
 export default Constructor;
-export type AllBaseOptions_constructor = import("../schema/options").AllBaseOptions;
+export type AllBaseOptions_constructor = import('../schema/options').AllBaseOptions;
 export type ConstructorReturnType = {
-    /**
-     * - Editor context object
-     */
-    context: SunEditor.Context;
-    /**
-     * - Carrier wrapper element
-     */
-    carrierWrapper: HTMLElement;
-    /**
-     * - Processed editor options (`Map`)
-     */
-    options: Map<string, any>;
-    /**
-     * - Loaded plugins
-     */
-    plugins: {
-        [x: string]: any;
-    };
-    /**
-     * - Icon set
-     */
-    icons: {
-        [x: string]: string;
-    };
-    /**
-     * - Language pack
-     */
-    lang: {
-        [x: string]: string;
-    };
-    /**
-     * - Initial editor value
-     */
-    value: string | null;
-    /**
-     * - Root frame ID
-     */
-    rootId: string | null;
-    /**
-     * - Array of frame keys
-     */
-    rootKeys: Array<string | null>;
-    /**
-     * - Map of frame contexts
-     */
-    frameRoots: Map<string | null, ReturnType<typeof CreateFrameContext>>;
-    /**
-     * - Plugin toolbar buttons
-     */
-    pluginCallButtons: {
-        [x: string]: HTMLElement[];
-    };
-    /**
-     * - Responsive toolbar buttons
-     */
-    responsiveButtons: Array<HTMLElement>;
-    /**
-     * - Sub-toolbar plugin buttons
-     */
-    pluginCallButtons_sub: {
-        [x: string]: Array<HTMLElement>;
-    } | [];
-    /**
-     * - Sub-toolbar responsive buttons
-     */
-    responsiveButtons_sub: Array<HTMLElement>;
-    /**
-     * - `options.shadowRoot` when passed (for selection API)
-     */
-    initShadowRoot?: ShadowRoot | null;
+	/**
+	 * - Editor context object
+	 */
+	context: SunEditor.Context;
+	/**
+	 * - Carrier wrapper element
+	 */
+	carrierWrapper: HTMLElement;
+	/**
+	 * - Processed editor options (`Map`)
+	 */
+	options: Map<string, any>;
+	/**
+	 * - Loaded plugins
+	 */
+	plugins: {
+		[x: string]: any;
+	};
+	/**
+	 * - Icon set
+	 */
+	icons: {
+		[x: string]: string;
+	};
+	/**
+	 * - Language pack
+	 */
+	lang: {
+		[x: string]: string;
+	};
+	/**
+	 * - Initial editor value
+	 */
+	value: string | null;
+	/**
+	 * - Root frame ID
+	 */
+	rootId: string | null;
+	/**
+	 * - Array of frame keys
+	 */
+	rootKeys: Array<string | null>;
+	/**
+	 * - Map of frame contexts
+	 */
+	frameRoots: Map<string | null, ReturnType<typeof CreateFrameContext>>;
+	/**
+	 * - Plugin toolbar buttons
+	 */
+	pluginCallButtons: {
+		[x: string]: HTMLElement[];
+	};
+	/**
+	 * - Responsive toolbar buttons
+	 */
+	responsiveButtons: Array<HTMLElement>;
+	/**
+	 * - Sub-toolbar plugin buttons
+	 */
+	pluginCallButtons_sub:
+		| {
+				[x: string]: Array<HTMLElement>;
+		  }
+		| [];
+	/**
+	 * - Sub-toolbar responsive buttons
+	 */
+	responsiveButtons_sub: Array<HTMLElement>;
+	/**
+	 * - `options.shadowRoot` when passed (for selection API)
+	 */
+	initShadowRoot?: ShadowRoot | null;
 };
 export type InitOptionsReturnType = {
-    /**
-     * - Processed base options (`Map` containing {@link AllBaseOptions_constructor} keys)
-     */
-    o: Map<string, any>;
-    /**
-     * - Icon set
-     */
-    i: {
-        [x: string]: string;
-    };
-    /**
-     * - Language pack
-     */
-    l: {
-        [x: string]: string;
-    };
-    /**
-     * - Initial editor value
-     */
-    v: string | null;
-    /**
-     * - Toolbar button list (arrays for groups, strings for single buttons)
-     */
-    buttons: SunEditor.UI.ButtonList;
-    /**
-     * - Sub-toolbar button list
-     */
-    subButtons: SunEditor.UI.ButtonList | null;
-    /**
-     * - Container element for status bar (if specified)
-     */
-    statusbarContainer: Element | null;
-    /**
-     * - Map of frame-specific options (frame key => `SunEditor.FrameOptions`)
-     */
-    frameMap: Map<string | null, SunEditor.FrameOptions>;
+	/**
+	 * - Processed base options (`Map` containing {@link AllBaseOptions_constructor} keys)
+	 */
+	o: Map<string, any>;
+	/**
+	 * - Icon set
+	 */
+	i: {
+		[x: string]: string;
+	};
+	/**
+	 * - Language pack
+	 */
+	l: {
+		[x: string]: string;
+	};
+	/**
+	 * - Initial editor value
+	 */
+	v: string | null;
+	/**
+	 * - Toolbar button list (arrays for groups, strings for single buttons)
+	 */
+	buttons: SunEditor.UI.ButtonList;
+	/**
+	 * - Sub-toolbar button list
+	 */
+	subButtons: SunEditor.UI.ButtonList | null;
+	/**
+	 * - Container element for status bar (if specified)
+	 */
+	statusbarContainer: Element | null;
+	/**
+	 * - Map of frame-specific options (frame key => `SunEditor.FrameOptions`)
+	 */
+	frameMap: Map<string | null, SunEditor.FrameOptions>;
 };
 /**
  * @typedef {import('../schema/options').AllBaseOptions} AllBaseOptions_constructor
@@ -229,9 +251,12 @@ export type InitOptionsReturnType = {
  * @param {SunEditor.InitOptions} options - Configuration options for the editor.
  * @returns {ConstructorReturnType} - SunEditor instance with context, options, and DOM elements.
  */
-declare function Constructor(editorTargets: Array<{
-    target: Element;
-    key: any;
-    options: SunEditor.InitFrameOptions;
-}>, options: SunEditor.InitOptions): ConstructorReturnType;
+declare function Constructor(
+	editorTargets: Array<{
+		target: Element;
+		key: any;
+		options: SunEditor.InitFrameOptions;
+	}>,
+	options: SunEditor.InitOptions,
+): ConstructorReturnType;
 import { CreateFrameContext } from '../schema/frameContext';

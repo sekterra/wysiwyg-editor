@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /**
  * @description Checks for numeric (with decimal point).
  * @param {*} text Text string or number
@@ -35,9 +36,9 @@ export function isEven(value: number): boolean;
 export function isOdd(value: number): boolean;
 export default numbers;
 declare namespace numbers {
-    export { is };
-    export { get };
-    export { getOverlapRangeAtIndex };
-    export { isEven };
-    export { isOdd };
+	export { is };
+	export { get };
+	export { getOverlapRangeAtIndex };
+	export { isEven };
+	export { isOdd };
 }

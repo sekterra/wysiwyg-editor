@@ -1,7 +1,7 @@
 import { PluginDropdownFree } from '../../interfaces';
 import { ColorPicker } from '../../modules/contract';
 import { dom } from '../../helper';
-import * as tableMultiCellFormat from './table/services/table.multiCellFormat';
+import * as tableMultiCellFormat from '../../core/logic/dom/tableMultiCellFormat';
 
 /**
  * @typedef {Object} BackgroundColorPluginOptions

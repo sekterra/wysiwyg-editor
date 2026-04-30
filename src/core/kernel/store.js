@@ -18,6 +18,8 @@ import { numbers } from '../../helper';
  * @property {boolean} _mousedown - Whether `mousedown` is pressed.
  * @property {boolean} _preventBlur - Suppress `blur` event handling.
  * @property {boolean} _preventFocus - Suppress `focus` event handling.
+ * @property {boolean} _toolbarPreserveSelection - Preserve expanded selection across toolbar interactions.
+ * @property {?Array<HTMLTableCellElement>} _tableMultiCellFormatSnapshot - Snapshot of multi-selected table cells for bulk-format commands.
  */
 
 /**
@@ -100,6 +102,8 @@ class Store {
 			_mousedown: false,
 			_preventBlur: false,
 			_preventFocus: false,
+			_toolbarPreserveSelection: false,
+			_tableMultiCellFormatSnapshot: null,
 		};
 	}
 

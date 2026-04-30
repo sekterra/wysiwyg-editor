@@ -1,3 +1,4 @@
+import type {} from '../../typedef';
 export default KernelInjector;
 /**
  * @description Base class for kernel consumers (plugins, event orchestrator).
@@ -6,10 +7,10 @@ export default KernelInjector;
  * - Eliminates circular references by routing through the Deps bag.
  */
 declare class KernelInjector {
-    /**
-     * @param {SunEditor.Kernel} kernel
-     */
-    constructor(kernel: SunEditor.Kernel);
-    /** @type {SunEditor.Deps} */
-    $: SunEditor.Deps;
+	/**
+	 * @param {SunEditor.Kernel} kernel
+	 */
+	constructor(kernel: SunEditor.Kernel);
+	/** @type {SunEditor.Deps} */
+	$: SunEditor.Deps;
 }

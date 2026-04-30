@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /**
  * @description Gets `XMLHttpRequest` object
  * @returns {XMLHttpRequest}
@@ -26,12 +27,12 @@ export const _d: Document;
  * @description No event symbol
  * @type {Symbol}
  */
-export const NO_EVENT: Symbol;
+export const NO_EVENT: symbol;
 /**
  * @description On over component symbol
  * @type {Symbol}
  */
-export const ON_OVER_COMPONENT: Symbol;
+export const ON_OVER_COMPONENT: symbol;
 /** --- Check browser --- */
 /**
  * @description Check if support `ResizeObserver` function
@@ -104,31 +105,31 @@ export const shiftIcon: string;
  */
 export const DPI: number;
 /** --- editor env --- */
-export const KATEX_WEBSITE: "https://katex.org/docs/supported.html";
-export const MATHJAX_WEBSITE: "https://www.mathjax.org/";
+export const KATEX_WEBSITE: 'https://katex.org/docs/supported.html';
+export const MATHJAX_WEBSITE: 'https://www.mathjax.org/';
 export default env;
 declare namespace env {
-    export { _w };
-    export { _d };
-    export { NO_EVENT };
-    export { ON_OVER_COMPONENT };
-    export { getXMLHttpRequest };
-    export { getPageStyle };
-    export { getIncludePath };
-    export { isResizeObserverSupported };
-    export { isClipboardSupported };
-    export { isEdge };
-    export { isBlink };
-    export { isGecko };
-    export { isChromium };
-    export { isSafari };
-    export { isOSX_IOS };
-    export { isAndroid };
-    export { isMobile };
-    export { isTouchDevice };
-    export { cmdIcon };
-    export { shiftIcon };
-    export { DPI };
-    export { KATEX_WEBSITE };
-    export { MATHJAX_WEBSITE };
+	export { _w };
+	export { _d };
+	export { NO_EVENT };
+	export { ON_OVER_COMPONENT };
+	export { getXMLHttpRequest };
+	export { getPageStyle };
+	export { getIncludePath };
+	export { isResizeObserverSupported };
+	export { isClipboardSupported };
+	export { isEdge };
+	export { isBlink };
+	export { isGecko };
+	export { isChromium };
+	export { isSafari };
+	export { isOSX_IOS };
+	export { isAndroid };
+	export { isMobile };
+	export { isTouchDevice };
+	export { cmdIcon };
+	export { shiftIcon };
+	export { DPI };
+	export { KATEX_WEBSITE };
+	export { MATHJAX_WEBSITE };
 }

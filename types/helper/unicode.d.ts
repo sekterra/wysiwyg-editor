@@ -1,3 +1,4 @@
+import type {} from '../typedef';
 /**
  * @description Escape a string for safe use in regular expressions.
  * @param {string} string String to escape
@@ -21,8 +22,8 @@ export const zeroWidthRegExp: RegExp;
 export const onlyZeroWidthRegExp: RegExp;
 export default unicode;
 declare namespace unicode {
-    export { zeroWidthSpace };
-    export { zeroWidthRegExp };
-    export { onlyZeroWidthRegExp };
-    export { escapeStringRegexp };
+	export { zeroWidthSpace };
+	export { zeroWidthRegExp };
+	export { onlyZeroWidthRegExp };
+	export { escapeStringRegexp };
 }

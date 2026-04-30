@@ -1,3 +1,4 @@
+import type {} from '../../../../typedef';
 /**
  * @typedef {object} ModalReturns_video
  * @property {HTMLElement} html
@@ -20,17 +21,17 @@
  */
 export function CreateHTML_modal({ lang, icons, plugins }: SunEditor.Deps, pluginOptions: any): ModalReturns_video;
 export type ModalReturns_video = {
-    html: HTMLElement;
-    alignForm: HTMLElement;
-    fileModalWrapper: HTMLElement;
-    videoInputFile: HTMLInputElement;
-    videoUrlFile: HTMLInputElement;
-    previewSrc: HTMLElement;
-    galleryButton: HTMLButtonElement;
-    proportion: HTMLInputElement;
-    frameRatioOption: HTMLSelectElement;
-    inputX: HTMLInputElement;
-    inputY: HTMLInputElement;
-    revertBtn: HTMLButtonElement;
-    fileRemoveBtn: HTMLButtonElement;
+	html: HTMLElement;
+	alignForm: HTMLElement;
+	fileModalWrapper: HTMLElement;
+	videoInputFile: HTMLInputElement;
+	videoUrlFile: HTMLInputElement;
+	previewSrc: HTMLElement;
+	galleryButton: HTMLButtonElement;
+	proportion: HTMLInputElement;
+	frameRatioOption: HTMLSelectElement;
+	inputX: HTMLInputElement;
+	inputY: HTMLInputElement;
+	revertBtn: HTMLButtonElement;
+	fileRemoveBtn: HTMLButtonElement;
 };

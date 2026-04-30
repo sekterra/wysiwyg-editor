@@ -1,3 +1,4 @@
+import type {} from '../../../../typedef';
 /**
  * @typedef {Object} ModalReturns_image
  * @property {HTMLElement} html
@@ -24,21 +25,21 @@
  */
 export function CreateHTML_modal({ lang, icons, plugins }: SunEditor.Deps, pluginOptions: any): ModalReturns_image;
 export type ModalReturns_image = {
-    html: HTMLElement;
-    alignForm: HTMLElement;
-    fileModalWrapper: HTMLElement;
-    imgInputFile: HTMLInputElement;
-    imgUrlFile: HTMLInputElement;
-    altText: HTMLInputElement;
-    captionCheckEl: HTMLInputElement;
-    previewSrc: HTMLElement;
-    tabs: HTMLElement;
-    galleryButton: HTMLButtonElement;
-    proportion: HTMLInputElement;
-    inputX: HTMLInputElement;
-    inputY: HTMLInputElement;
-    revertBtn: HTMLButtonElement;
-    asBlock: HTMLButtonElement;
-    asInline: HTMLButtonElement;
-    fileRemoveBtn: HTMLButtonElement;
+	html: HTMLElement;
+	alignForm: HTMLElement;
+	fileModalWrapper: HTMLElement;
+	imgInputFile: HTMLInputElement;
+	imgUrlFile: HTMLInputElement;
+	altText: HTMLInputElement;
+	captionCheckEl: HTMLInputElement;
+	previewSrc: HTMLElement;
+	tabs: HTMLElement;
+	galleryButton: HTMLButtonElement;
+	proportion: HTMLInputElement;
+	inputX: HTMLInputElement;
+	inputY: HTMLInputElement;
+	revertBtn: HTMLButtonElement;
+	asBlock: HTMLButtonElement;
+	asInline: HTMLButtonElement;
+	fileRemoveBtn: HTMLButtonElement;
 };

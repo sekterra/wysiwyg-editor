@@ -1,6 +1,6 @@
 import { dom, env, keyCodeMap } from '../../../helper';
 import { isTable, isList } from '../../../helper/dom/domCheck';
-import * as tableMultiCellFormat from '../../../plugins/dropdown/table/services/table.multiCellFormat';
+import * as tableMultiCellFormat from '../dom/tableMultiCellFormat';
 
 const { NO_EVENT } = env;
 
