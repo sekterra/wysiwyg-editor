@@ -167,5 +167,8 @@
 		"text formatting",
 		"web editor",
 		"browser editor"
-	]
+	],
+	"dependencies": {
+		"@shoelace-style/shoelace": "^2.20.1"
+	}
 }
